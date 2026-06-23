@@ -12,7 +12,11 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Inter", ...defaultTheme.fontFamily.sans],
+                // Menjadikan Quicksand sebagai font utama (menggantikan font sans bawaan)
+                sans: ["Quicksand", ...defaultTheme.fontFamily.sans],
+
+                // Membuat class kustom 'font-balsamiq' untuk judul/elemen khusus
+                balsamiq: ['"Balsamiq Sans"', "cursive"],
             },
         },
     },
