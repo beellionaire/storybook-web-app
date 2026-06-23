@@ -3,7 +3,10 @@
         Welcome to StoryHub
         </x-slot>
 
-        <div class="max-w-7xl mx-auto px-4 py-12 text-center">
-            <h1 class="text-4xl font-bold">Halo dari Custom Layout!</h1>
+        <div class="text-center">
+            @include('frontend.landing.menu.hero')
+            @include('frontend.landing.menu.trending-section')
+            @include('frontend.landing.menu.category-section')
+            @include('frontend.landing.menu.latest-section')
         </div>
 </x-layouts.main>

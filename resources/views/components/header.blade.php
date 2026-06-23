@@ -2,7 +2,7 @@
     @scroll.window="scrolled = (window.pageYOffset > 10)"
     :class="{ 'bg-white/80 backdrop-blur-md shadow-sm border-gray-200': scrolled, 'bg-transparent border-transparent': !scrolled }"
     class="fixed top-0 left-0 w-full z-50 border-b transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20 transition-all duration-300" :class="{ 'h-16': scrolled }">
 
             <div class="flex items-center gap-8">
@@ -12,9 +12,9 @@
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-6">
-                    <a href="/browse"
+                    <a href="{{ route('books.index') }}"
                         class="text-sm font-medium text-slate-600 hover:text-amber-500 transition-colors">Eksplorasi</a>
-                    <a href="/genres"
+                    <a href="{{ route('genre.index') }}"
                         class="text-sm font-medium text-slate-600 hover:text-amber-500 transition-colors">Genre</a>
                 </nav>
             </div>
