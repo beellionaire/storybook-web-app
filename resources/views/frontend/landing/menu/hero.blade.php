@@ -7,11 +7,11 @@
     <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(251,191,36,0.1),transparent_70%)]"></div>
 
     <img src="{{ asset('images/left-cloud.png') }}" alt="Left Cloud"
-        class="absolute top-32 lg:top-14 -left-12 w-32 sm:w-48 lg:w-[600px] -translate-x-1/4 -z-10 animate-pulse opacity-80"
+        class="absolute hidden md:block top-32 lg:top-14 -left-12 w-32 sm:w-48 lg:w-[600px] -translate-x-1/4 -z-10 animate-pulse opacity-80"
         style="animation-delay: 200ms; animation-duration: 6s">
 
     <img src="{{ asset('images/right-cloud.png') }}" alt="Right Cloud"
-        class="absolute top-20 lg:top-9 -right-12 w-32 sm:w-48 lg:w-[700px] translate-x-1/4 -z-10 animate-pulse opacity-80"
+        class="absolute hidden md:block top-20 lg:top-9 -right-12 w-32 sm:w-48 lg:w-[700px] translate-x-1/4 -z-10 animate-pulse opacity-80"
         style="animation-delay: 400ms; animation-duration: 8s">
 
 
@@ -50,7 +50,7 @@
         <div class="mt-0 relative w-full flex justify-center transition-all duration-1000 delay-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
             :class="mounted ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'">
 
-            <div class="relative w-full max-w-[1000px] px-4 lg:px-0">
+            <div class="relative w-full max-w-[1050px] px-4 lg:px-0">
                 <img src="{{ asset('images/hero.png') }}" alt="Anak-anak belajar dan membaca"
                     class="w-full h-auto object-contain drop-shadow-[0_25px_25px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-transform duration-500">
             </div>

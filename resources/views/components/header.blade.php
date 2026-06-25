@@ -7,8 +7,8 @@
 
             <div class="flex items-center gap-8">
                 <a href="/"
-                    class="text-2xl font-extrabold tracking-tight text-slate-900 transition-transform hover:scale-105">
-                    Story<span class="text-amber-500">Hub</span>
+                    class="text-2xl font-black tracking-tight text-slate-900 transition-transform hover:scale-105">
+                    Kita<span class="text-amber-500">Baca.</span>
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-6">
@@ -103,71 +103,78 @@
         </div>
     </div>
 
-    <div x-show="mobileMenuOpen" x-transition.opacity
-        class="fixed inset-0 bg-slate-900/40 z-40 md:hidden backdrop-blur-sm" @click="mobileMenuOpen = false"
-        style="display: none;">
-    </div>
-
-    <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300 transform"
-        x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
-        x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="translate-x-0"
-        x-transition:leave-end="translate-x-full"
-        class="fixed inset-y-0 right-0 z-50 w-full max-w-xs bg-white shadow-2xl flex flex-col md:hidden"
-        style="display: none;">
-
-        <div class="px-6 py-5 flex items-center justify-between border-b border-slate-100">
-            <span class="text-xl font-bold text-slate-900">Menu Utama</span>
-            <button @click="mobileMenuOpen = false"
-                class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-
-        <div class="px-6 py-6 overflow-y-auto flex-1 flex flex-col gap-6">
-            <div class="relative">
-                <input type="text" placeholder="Cari..."
-                    class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500">
+    <template x-teleport="body">
+        <div>
+            <div x-show="mobileMenuOpen" x-transition.opacity
+                class="fixed inset-0 bg-slate-900/40 z-40 md:hidden backdrop-blur-sm" @click="mobileMenuOpen = false"
+                style="display: none;">
             </div>
 
-            <nav class="flex flex-col gap-4">
-                <a href="/browse"
-                    class="text-base font-medium text-slate-600 hover:text-amber-500 flex items-center justify-between">Eksplorasi
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg></a>
-                <a href="/write"
-                    class="text-base font-medium text-slate-600 hover:text-amber-500 flex items-center justify-between">Mulai
-                    Menulis <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg></a>
-            </nav>
-        </div>
+            <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300 transform"
+                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="translate-x-0"
+                x-transition:leave-end="translate-x-full"
+                class="fixed inset-y-0 right-0 z-50 w-full max-w-xs bg-white shadow-2xl flex flex-col md:hidden"
+                style="display: none;">
 
-        <div class="p-6 border-t border-slate-100 bg-slate-50">
-            @auth
-            <a href="/profile" class="flex items-center gap-3 mb-4">
-                <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}"
-                    class="w-10 h-10 rounded-full" alt="User">
-                <div>
-                    <p class="text-sm font-semibold text-slate-900">{{ auth()->user()->name }}</p>
-                    <p class="text-xs text-slate-500">Lihat Profil</p>
+                <div class="px-6 py-5 flex items-center justify-between border-b border-slate-100">
+                    <span class="text-xl font-bold text-slate-900">Menu Utama</span>
+                    <button @click="mobileMenuOpen = false"
+                        class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 </div>
-            </a>
-            <form method="POST" action="/logout">
-                @csrf
-                <button type="submit"
-                    class="w-full py-3 px-4 bg-white border border-slate-200 text-slate-600 rounded-xl text-sm font-medium hover:bg-slate-50 transition-colors">Keluar</button>
-            </form>
-            @else
-            <div class="grid grid-cols-2 gap-3">
-                <a href="/login"
-                    class="py-3 px-4 bg-white border border-slate-200 text-center text-slate-600 rounded-xl text-sm font-medium hover:bg-slate-50 transition-colors">Masuk</a>
-                <a href="/register"
-                    class="py-3 px-4 bg-slate-900 text-center text-white rounded-xl text-sm font-medium hover:bg-slate-800 transition-colors">Daftar</a>
+
+                <div class="px-6 py-6 overflow-y-auto flex-1 flex flex-col gap-6">
+                    <div class="relative">
+                        <input type="text" placeholder="Cari..."
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500">
+                    </div>
+
+                    <nav class="flex flex-col gap-4">
+                        <a href="/browse"
+                            class="text-base font-medium text-slate-600 hover:text-amber-500 flex items-center justify-between">Eksplorasi
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg></a>
+                        <a href="/write"
+                            class="text-base font-medium text-slate-600 hover:text-amber-500 flex items-center justify-between">Mulai
+                            Menulis <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg></a>
+                    </nav>
+                </div>
+
+                <div class="p-6 border-t border-slate-100 bg-slate-50">
+                    @auth
+                    <a href="/profile" class="flex items-center gap-3 mb-4">
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}"
+                            class="w-10 h-10 rounded-full" alt="User">
+                        <div>
+                            <p class="text-sm font-semibold text-slate-900">{{ auth()->user()->name }}</p>
+                            <p class="text-xs text-slate-500">Lihat Profil</p>
+                        </div>
+                    </a>
+                    <form method="POST" action="/logout">
+                        @csrf
+                        <button type="submit"
+                            class="w-full py-3 px-4 bg-white border border-slate-200 text-slate-600 rounded-xl text-sm font-medium hover:bg-slate-50 transition-colors">Keluar</button>
+                    </form>
+                    @else
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="/login"
+                            class="py-3 px-4 bg-white border border-slate-200 text-center text-slate-600 rounded-xl text-sm font-medium hover:bg-slate-50 transition-colors">Masuk</a>
+                        <a href="/register"
+                            class="py-3 px-4 bg-slate-900 text-center text-white rounded-xl text-sm font-medium hover:bg-slate-800 transition-colors">Daftar</a>
+                    </div>
+                    @endauth
+                </div>
             </div>
-            @endauth
         </div>
-    </div>
+    </template>
 </header>

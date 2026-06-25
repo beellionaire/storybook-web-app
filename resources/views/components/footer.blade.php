@@ -1,82 +1,72 @@
-<footer class="bg-slate-50 border-t border-slate-200 pt-16 pb-8">
+<footer class="bg-white border-t border-slate-100 pt-16 pb-8 font-sans">
     <div class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="pb-12 border-b border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-                <h2 class="text-2xl font-bold text-slate-900">Siap menerbitkan karyamu?</h2>
-                <p class="mt-2 text-slate-500">Bergabunglah dengan ribuan penulis yang telah menemukan pembaca mereka.
-                </p>
-            </div>
-            <a href="/write"
-                class="inline-flex items-center justify-center px-6 py-3 bg-amber-500 text-white font-medium rounded-full hover:bg-amber-600 shadow-lg shadow-amber-500/25 transition-all hover:-translate-y-0.5">
-                Mulai Menulis Sekarang
-            </a>
-        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-12">
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
             <div class="col-span-2 md:col-span-1">
-                <a href="/" class="text-2xl font-extrabold tracking-tight text-slate-900">
-                    Story<span class="text-amber-500">Hub</span>
+                <a href="/" class="text-3xl font-black text-slate-900 flex items-center gap-1.5 tracking-tight mb-4">
+                    Kita<span class="text-amber-500">Baca.</span>
                 </a>
-                <p class="mt-4 text-sm text-slate-500 leading-relaxed max-w-xs">
+                <p class="text-xs font-medium text-slate-500 leading-relaxed max-w-xs">
                     Platform membaca interaktif generasi baru. Temukan duniamu, satu halaman setiap kalinya.
                 </p>
             </div>
 
             <div>
-                <h3 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-5">Eksplorasi</h3>
-                <ul class="space-y-3">
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5">Eksplorasi</h3>
+                <ul class="space-y-4">
                     <li><a href="#"
-                            class="text-sm text-slate-500 hover:text-amber-600 hover:translate-x-1 inline-block transition-transform">Fiksi
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Fiksi
                             Remaja</a></li>
                     <li><a href="#"
-                            class="text-sm text-slate-500 hover:text-amber-600 hover:translate-x-1 inline-block transition-transform">Romansa</a>
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Persahabatan</a>
                     </li>
                     <li><a href="#"
-                            class="text-sm text-slate-500 hover:text-amber-600 hover:translate-x-1 inline-block transition-transform">Misteri
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Misteri
                             & Thriller</a></li>
                     <li><a href="#"
-                            class="text-sm text-slate-500 hover:text-amber-600 hover:translate-x-1 inline-block transition-transform">Pilihan
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Pilihan
                             Editor</a></li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-5">Untuk Penulis</h3>
-                <ul class="space-y-3">
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5">Untuk Penulis</h3>
+                <ul class="space-y-4">
                     <li><a href="#"
-                            class="text-sm text-slate-500 hover:text-amber-600 hover:translate-x-1 inline-block transition-transform">Pusat
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Pusat
                             Bantuan Penulis</a></li>
                     <li><a href="#"
-                            class="text-sm text-slate-500 hover:text-amber-600 hover:translate-x-1 inline-block transition-transform">Panduan
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Panduan
                             Format</a></li>
                     <li><a href="#"
-                            class="text-sm text-slate-500 hover:text-amber-600 hover:translate-x-1 inline-block transition-transform">Program
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Program
                             Royalti</a></li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-5">Perusahaan</h3>
-                <ul class="space-y-3">
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5">Perusahaan</h3>
+                <ul class="space-y-4">
                     <li><a href="#"
-                            class="text-sm text-slate-500 hover:text-amber-600 hover:translate-x-1 inline-block transition-transform">Tentang
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Tentang
                             Kami</a></li>
                     <li><a href="#"
-                            class="text-sm text-slate-500 hover:text-amber-600 hover:translate-x-1 inline-block transition-transform">Kebijakan
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Kebijakan
                             Privasi</a></li>
                     <li><a href="#"
-                            class="text-sm text-slate-500 hover:text-amber-600 hover:translate-x-1 inline-block transition-transform">Syarat
-                            & Ketentuan</a></li>
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Syarat &
+                            Ketentuan</a></li>
                 </ul>
             </div>
+
         </div>
 
-        <div class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-slate-200 gap-4">
-            <p class="text-sm text-slate-400">
+        <div class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-slate-100 gap-4">
+            <p class="text-xs font-medium text-slate-400">
                 &copy; {{ date('Y') }} StoryHub. Dibuat dengan cinta untuk literasi.
             </p>
-            <div class="flex space-x-5">
+            <div class="flex space-x-4">
                 <a href="#" class="text-slate-400 hover:text-amber-500 transition-colors">
                     <span class="sr-only">Twitter</span>
                     <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -94,5 +84,6 @@
                 </a>
             </div>
         </div>
+
     </div>
 </footer>

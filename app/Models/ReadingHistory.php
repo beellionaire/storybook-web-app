@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class ReadingHistory extends Model
+{
+    protected $fillable = ['user_id', 'book_id', 'last_chapter_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
+
+    public function lastChapter()
+    {
+        return $this->belongsTo(Chapter::class, 'last_chapter_id');
+    }
+}
