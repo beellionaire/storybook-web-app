@@ -15,8 +15,8 @@
                 @click.away="createModalOpen = false"
                 class="relative w-full max-w-lg transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all border border-slate-100">
 
-                <form
-                    @submit.prevent="createModalOpen = false; showToast('Berhasil! Pengguna baru telah ditambahkan.')">
+                <form action="{{ route('admin.users.store') }}" method="POST">
+                    @csrf
                     <div class="bg-white px-6 pb-6 pt-8 sm:px-8 sm:pt-8">
                         <div class="mb-6">
                             <h3 class="text-2xl font-black text-slate-900 tracking-tight" id="modal-title">Tambah

@@ -14,7 +14,9 @@
                 @click.away="editModalOpen = false"
                 class="relative w-full max-w-lg transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all border border-slate-100">
 
-                <form @submit.prevent="editModalOpen = false; showToast('Pembaruan data berhasil disimpan.')">
+                <form x-bind:action="`{{ url('/admin/users') }}/${selectedUser?.id}`" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="bg-white px-6 pb-6 pt-8 sm:px-8 sm:pt-8">
                         <div class="mb-6 flex justify-between items-start">
                             <div>

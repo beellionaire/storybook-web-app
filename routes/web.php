@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController as AdminAdminController;
+use App\Http\Controllers\Admin\BookManageController;
+use App\Http\Controllers\Admin\CategoryGenreController;
+use App\Http\Controllers\Admin\SubmissionManageController;
 use App\Http\Controllers\Admin\UserManageController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\Contributor\ContributorController as ContributorContributorController;
@@ -80,9 +83,30 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard', [AdminAdminController::class, 'dashboard'])->name('dashboard');
 
         // Manajemen Platform
-        Route::get('/users', [UserManageController::class, 'index'])->name('users');
-        // Route::get('/submissions', [AdminController::class, 'manageSubmissions'])->name('submissions');
-        // Route::post('/submissions/{id}/approve', [AdminController::class, 'approve'])->name('submissions.approve');
+        Route::get('/users', [UserManageController::class, 'index'])->name('users.index');
+        Route::post('/users', [UserManageController::class, 'store'])->name('users.store');
+        Route::put('/users/{id}', [UserManageController::class, 'update'])->name('users.update');
+        Route::delete('/users/{id}', [UserManageController::class, 'destroy'])->name('users.destroy');
+
+        // Submission
+        Route::get('/submissions', [SubmissionManageController::class, 'index'])->name('submissions.index');
+        Route::post('/submissions/{id}/approve', [SubmissionManageController::class, 'approve'])->name('submissions.approve');
+        Route::post('/submissions/{id}/reject', [SubmissionManageController::class, 'reject'])->name('submissions.reject');
+
+        // Category
+        Route::get('/taxonomy', [CategoryGenreController::class, 'index'])->name('categories.index');
+        Route::post('/categories', [CategoryGenreController::class, 'storeCategory'])->name('categories.store');
+        Route::delete('/categories/{id}', [CategoryGenreController::class, 'destroyCategory'])->name('categories.destroy');
+        Route::post('/genres', [CategoryGenreController::class, 'storeGenre'])->name('genres.store');
+        Route::delete('/genres/{id}', [CategoryGenreController::class, 'destroyGenre'])->name('genres.destroy');
+        Route::post('/subgenres', [CategoryGenreController::class, 'storeSubgenre'])->name('subgenres.store');
+        Route::delete('/subgenres/{id}', [CategoryGenreController::class, 'destroySubgenre'])->name('subgenres.destroy');
+
+        // Book
+        Route::get('/books', [BookManageController::class, 'index'])->name('books.index');
+        Route::get('/books/{id}', [BookManageController::class, 'show'])->name('books.show');
+        Route::patch('/books/{id}/toggle', [BookManageController::class, 'toggleStatus'])->name('books.toggle');
+        Route::delete('/books/{id}', [BookManageController::class, 'destroy'])->name('books.destroy');
     });
 });
 

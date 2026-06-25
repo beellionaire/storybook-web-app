@@ -14,8 +14,9 @@
                 @click.away="deleteModalOpen = false"
                 class="relative w-full max-w-md transform overflow-hidden rounded-[2rem] bg-white text-left shadow-2xl transition-all border border-slate-100">
 
-                <form
-                    @submit.prevent="deleteModalOpen = false; showToast('Akun berhasil dihapus secara permanen.', 'error')">
+                <form x-bind:action="`{{ url('/admin/users') }}/${selectedUser?.id}`" method="POST">
+                    @csrf
+                    @method('DELETE')
                     <div class="bg-white px-6 pb-6 pt-8 sm:px-8 sm:pt-8">
                         <div
                             class="sm:flex sm:items-start flex-col sm:flex-row items-center sm:items-start text-center sm:text-left">
