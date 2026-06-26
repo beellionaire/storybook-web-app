@@ -71,13 +71,13 @@
         <div class="pt-6 pb-2 px-4">
             <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Kreator</p>
         </div>
-        {{--
+
         <a href="{{ route('contributor.stories.index', [], false) ?? '#' }}"
-            class="group flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300 ease-out {{ request()->routeIs('contributor.stories.index*') ? 'bg-gradient-to-tr from-amber-500 to-orange-500 text-white shadow-[0_8px_20px_rgb(249,115,22,0.3)] font-bold translate-x-1' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900 hover:translate-x-1 font-medium' }}">
+            class="group flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300 ease-out {{ request()->routeIs('contributor.stories.*') ? 'bg-gradient-to-tr from-amber-500 to-orange-500 text-white shadow-[0_8px_20px_rgb(249,115,22,0.3)] font-bold translate-x-1' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900 hover:translate-x-1 font-medium' }}">
             <i
                 class="fa-solid fa-pen-nib w-5 text-center text-lg {{ request()->routeIs('contributor.stories.index*') ? 'text-white' : 'text-slate-400 group-hover:text-orange-500 transition-colors' }}"></i>
             <span>Karya Saya</span>
-        </a> --}}
+        </a>
         @endif
 
         @if(Auth::check() && Auth::user()->role === 'user')

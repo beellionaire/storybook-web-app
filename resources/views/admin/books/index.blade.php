@@ -1,5 +1,12 @@
 <x-app-layout>
-    <div class="w-full pb-8">
+    <div class="w-full pb-8 relative" x-data="{
+            deleteModalOpen: false,
+            selectedBook: null,
+            openDelete(book) {
+                this.selectedBook = book;
+                this.deleteModalOpen = true;
+            }
+        }">
 
         <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
@@ -149,18 +156,16 @@
                                         </button>
                                     </form>
 
-                                    <form action="{{ route('admin.books.destroy', $book->id) }}" method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus cerita ini?')">
-                                        @csrf @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-white border border-rose-200 text-rose-500 hover:bg-rose-500 hover:text-white p-2 rounded-xl transition-all shadow-sm"
-                                            title="Hapus">
-                                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </button>
-                                    </form>
+                                    <button
+                                        @click="openDelete({ id: {{ $book->id }}, title: '{{ addslashes($book->title) }}' })"
+                                        type="button"
+                                        class="bg-white border border-rose-200 text-rose-500 hover:bg-rose-500 hover:text-white p-2 rounded-xl transition-all shadow-sm"
+                                        title="Hapus">
+                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -179,5 +184,8 @@
             </div>
             @endif
         </div>
+
+        @include('admin.books.partials.delete-modal')
+
     </div>
 </x-app-layout>

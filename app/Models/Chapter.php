@@ -23,6 +23,7 @@ class Chapter extends Model
     protected $casts = [
         'has_poll' => 'boolean',
         'poll_data' => 'array', // Otomatis mengubah JSON di database jadi Array di PHP
+        'content' => 'array',
     ];
 
     public function book()

@@ -6,7 +6,9 @@ use App\Http\Controllers\Admin\CategoryGenreController;
 use App\Http\Controllers\Admin\SubmissionManageController;
 use App\Http\Controllers\Admin\UserManageController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\Contributor\ChapterController;
 use App\Http\Controllers\Contributor\ContributorController as ContributorContributorController;
+use App\Http\Controllers\Contributor\StoryController;
 use App\Http\Controllers\Contributor\SubmissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController as UserUserController;
@@ -63,17 +65,27 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     // 4. AREA CONTRIBUTOR (Penulis)
-    // Admin diizinkan masuk ke area ini jika sewaktu-waktu perlu memantau langsung
     Route::middleware(['role:contributor,admin'])->prefix('contributor')->name('contributor.')->group(function () {
         // Akses url: /contributor/dashboard
         Route::get('/dashboard', [ContributorContributorController::class, 'dashboard'])->name('dashboard');
 
-        Route::get('/submission', [SubmissionController::class, 'index'])->name('submit.index');
+        Route::get('/stories', [StoryController::class, 'index'])->name('stories.index');
+        Route::get('/stories/create', [StoryController::class, 'create'])->name('stories.create');
+        Route::post('/stories', [StoryController::class, 'store'])->name('stories.store');
+        Route::get('/stories/{id}', [StoryController::class, 'show'])->name('stories.show');
+        Route::delete('/stories/{id}', [StoryController::class, 'destroy'])->name('stories.destroy');
+        Route::post('/stories/{id}/reorder-chapters', [StoryController::class, 'reorderChapters'])->name('stories.reorder_chapters');
+        // Rute Edit Info Buku
+        Route::get('/stories/{id}/edit', [StoryController::class, 'edit'])->name('stories.edit');
+        Route::put('/stories/{id}', [StoryController::class, 'update'])->name('stories.update');
 
-        // Manajemen Cerita
-        // Route::get('/my-stories', [StoryController::class, 'index'])->name('stories.index');
-        // Route::get('/write', [StoryController::class, 'create'])->name('stories.create');
-        // Route::post('/write', [StoryController::class, 'store'])->name('stories.store');
+        Route::get('/stories/{book_id}/chapters/create', [ChapterController::class, 'create'])->name('chapters.create');
+        Route::post('/stories/{book_id}/chapters', [ChapterController::class, 'store'])->name('chapters.store');
+        // Rute Edit Bab
+        Route::get('/stories/{book_id}/chapters/{chapter_id}/edit', [ChapterController::class, 'edit'])->name('chapters.edit');
+        Route::put('/stories/{book_id}/chapters/{chapter_id}', [ChapterController::class, 'update'])->name('chapters.update');
+        // Ubah dari PUT menjadi DELETE
+        Route::delete('/stories/{book_id}/chapters/{chapter_id}', [ChapterController::class, 'destroy'])->name('chapters.destroy');
     });
 
 
