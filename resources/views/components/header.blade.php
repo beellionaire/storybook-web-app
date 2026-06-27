@@ -14,7 +14,7 @@
                 <nav class="hidden lg:flex items-center gap-6">
                     <a href="{{ route('books.index') }}"
                         class="text-sm font-medium text-slate-600 hover:text-amber-500 transition-colors">Eksplorasi</a>
-                    <a href="{{ route('genre.index') }}"
+                    <a href="{{ route('explore.index') }}"
                         class="text-sm font-medium text-slate-600 hover:text-amber-500 transition-colors">Genre</a>
                 </nav>
             </div>

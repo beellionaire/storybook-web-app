@@ -98,7 +98,7 @@
                                             <option value="" disabled selected>Pilih Kategori</option>
                                             @foreach($categories as $category)
                                             <option value="{{ $category->id }}" {{ old('category_id')==$category->id ?
-                                                'selected' : '' }}>{{ $category->icon }} {{ $category->name }}</option>
+                                                'selected' : '' }}>{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                         <div

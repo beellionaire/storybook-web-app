@@ -13,7 +13,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Ikon (Emoji)</label>
-                    <input type="text" name="icon" placeholder="Cth: 🚀"
+                    <input type="text" name="icon" placeholder="Cth: fa-solid fa-rocket"
                         class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-amber-500/20 focus:bg-white transition-all">
                 </div>
             </div>

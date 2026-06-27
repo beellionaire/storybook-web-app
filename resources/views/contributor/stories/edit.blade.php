@@ -89,7 +89,7 @@
                                         class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 text-sm font-bold focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500">
                                         @foreach($categories as $category)
                                         <option value="{{ $category->id }}" {{ old('category_id', $book->category_id) ==
-                                            $category->id ? 'selected' : '' }}>{{ $category->icon }} {{ $category->name
+                                            $category->id ? 'selected' : '' }}> {{ $category->name
                                             }}</option>
                                         @endforeach
                                     </select>

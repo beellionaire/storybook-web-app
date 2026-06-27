@@ -31,160 +31,61 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 mt-8">
-
+            @forelse($popularBooks as $index => $book)
             <div
                 class="group cursor-pointer relative bg-white rounded-3xl p-3.5 shadow-sm border-2 border-slate-100 hover:border-amber-400 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
 
                 <div
                     class="absolute -top-4 -left-4 bg-yellow-400 text-yellow-900 border-4 border-white font-balsamiq text-xl w-14 h-14 flex items-center justify-center rounded-full shadow-md z-20">
-                    1
+                    {{ $index + 1 }}
                 </div>
 
                 <div class="relative aspect-[2/3] rounded-2xl overflow-hidden mb-4 bg-slate-100">
-                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&auto=format&fit=crop"
+                    @if($book->cover_image)
+                    <img src="{{ asset('storage/' . $book->cover_image) }}"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         alt="Cover Buku">
+                    @else
+                    <div class="w-full h-full flex items-center justify-center bg-slate-200"><i
+                            class="fa-solid fa-image text-slate-400"></i></div>
+                    @endif
 
                     <div
                         class="absolute inset-0 bg-amber-500/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                        <button
+                        <a href="{{ route('books.story', $book->slug) }}"
                             class="font-balsamiq bg-white text-amber-600 text-sm font-bold px-6 py-2.5 rounded-full shadow-lg scale-90 group-hover:scale-100 transition-transform">
                             Baca Cerita
-                        </button>
+                        </a>
                     </div>
                 </div>
 
                 <div class="px-2 pb-2 text-center">
-                    <h3
-                        class="font-balsamiq text-lg font-bold text-slate-800 mb-1 truncate group-hover:text-amber-500 transition-colors">
-                        Eko-Sistem: Batas Akhir
+                    <h3 class="font-balsamiq text-lg font-bold text-slate-800 mb-1 truncate group-hover:text-amber-500 transition-colors"
+                        title="{{ $book->title }}">
+                        {{ $book->title }}
                     </h3>
-                    <p class="text-xs font-medium text-slate-500 mb-3">Oleh <span
-                            class="font-bold text-slate-700">Nabil</span></p>
+                    <p class="text-xs font-medium text-slate-500 mb-3">Oleh <span class="font-bold text-slate-700">{{
+                            $book->author->name ?? 'Anonim' }}</span></p>
 
                     <div class="flex items-center justify-center gap-4 pt-3 border-t border-slate-100">
                         <div class="flex items-center gap-1 text-slate-600 font-bold text-xs">
-                            <span class="text-amber-400 text-sm">★</span> 4.9
+                            <span class="text-amber-400 text-sm">★</span> {{ $book->rating ?? '4.9' }}
                         </div>
                         <div class="w-1 h-1 bg-slate-300 rounded-full"></div>
                         <div class="flex items-center gap-1 text-slate-500 font-bold text-xs">
-                            👁️ 124K
+                            👁️ {{ $book->views_count > 999 ? round($book->views_count/1000, 1) . 'K' :
+                            $book->views_count }}
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div
-                class="group cursor-pointer relative bg-white rounded-3xl p-3.5 shadow-sm border-2 border-slate-100 hover:border-slate-400 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="absolute -top-4 -left-4 bg-slate-200 text-slate-700 border-4 border-white font-balsamiq text-xl w-14 h-14 flex items-center justify-center rounded-full shadow-md z-20">
-                    2
-                </div>
-                <div class="relative aspect-[2/3] rounded-2xl overflow-hidden mb-4 bg-slate-100">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400&auto=format&fit=crop"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        alt="Cover Buku">
-                    <div
-                        class="absolute inset-0 bg-slate-800/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                        <button
-                            class="font-balsamiq bg-white text-slate-800 text-sm font-bold px-6 py-2.5 rounded-full shadow-lg scale-90 group-hover:scale-100 transition-transform">
-                            Baca Cerita
-                        </button>
-                    </div>
-                </div>
-                <div class="px-2 pb-2 text-center">
-                    <h3
-                        class="font-balsamiq text-lg font-bold text-slate-800 mb-1 truncate group-hover:text-amber-500 transition-colors">
-                        Sirkuit Hati
-                    </h3>
-                    <p class="text-xs font-medium text-slate-500 mb-3">Oleh <span
-                            class="font-bold text-slate-700">Raditya</span></p>
-                    <div class="flex items-center justify-center gap-4 pt-3 border-t border-slate-100">
-                        <div class="flex items-center gap-1 text-slate-600 font-bold text-xs">
-                            <span class="text-amber-400 text-sm">★</span> 4.8
-                        </div>
-                        <div class="w-1 h-1 bg-slate-300 rounded-full"></div>
-                        <div class="flex items-center gap-1 text-slate-500 font-bold text-xs">
-                            👁️ 98K
-                        </div>
-                    </div>
-                </div>
             </div>
-
-            <div
-                class="group cursor-pointer relative bg-white rounded-3xl p-3.5 shadow-sm border-2 border-slate-100 hover:border-orange-400 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="absolute -top-4 -left-4 bg-orange-300 text-orange-900 border-4 border-white font-balsamiq text-xl w-14 h-14 flex items-center justify-center rounded-full shadow-md z-20">
-                    3
-                </div>
-                <div class="relative aspect-[2/3] rounded-2xl overflow-hidden mb-4 bg-slate-100">
-                    <img src="https://images.unsplash.com/photo-1614531341773-3bff8b7cb3fc?q=80&w=400&auto=format&fit=crop"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        alt="Cover Buku">
-                    <div
-                        class="absolute inset-0 bg-orange-500/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                        <button
-                            class="font-balsamiq bg-white text-orange-600 text-sm font-bold px-6 py-2.5 rounded-full shadow-lg scale-90 group-hover:scale-100 transition-transform">
-                            Baca Cerita
-                        </button>
-                    </div>
-                </div>
-                <div class="px-2 pb-2 text-center">
-                    <h3
-                        class="font-balsamiq text-lg font-bold text-slate-800 mb-1 truncate group-hover:text-amber-500 transition-colors">
-                        Bayang Masa Lalu
-                    </h3>
-                    <p class="text-xs font-medium text-slate-500 mb-3">Oleh <span class="font-bold text-slate-700">Sarah
-                            M.</span></p>
-                    <div class="flex items-center justify-center gap-4 pt-3 border-t border-slate-100">
-                        <div class="flex items-center gap-1 text-slate-600 font-bold text-xs">
-                            <span class="text-amber-400 text-sm">★</span> 4.7
-                        </div>
-                        <div class="w-1 h-1 bg-slate-300 rounded-full"></div>
-                        <div class="flex items-center gap-1 text-slate-500 font-bold text-xs">
-                            👁️ 85K
-                        </div>
-                    </div>
-                </div>
+            @empty
+            <div class="col-span-full py-12 text-center text-slate-500 font-bold">
+                Belum ada cerita populer minggu ini.
             </div>
-
-            <div
-                class="group cursor-pointer relative bg-white rounded-3xl p-3.5 shadow-sm border-2 border-slate-100 hover:border-blue-400 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                <div
-                    class="absolute -top-4 -left-4 bg-blue-300 text-blue-900 border-4 border-white font-balsamiq text-xl w-14 h-14 flex items-center justify-center rounded-full shadow-md z-20">
-                    4
-                </div>
-                <div class="relative aspect-[2/3] rounded-2xl overflow-hidden mb-4 bg-slate-100">
-                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=400&auto=format&fit=crop"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        alt="Cover Buku">
-                    <div
-                        class="absolute inset-0 bg-blue-500/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                        <button
-                            class="font-balsamiq bg-white text-blue-600 text-sm font-bold px-6 py-2.5 rounded-full shadow-lg scale-90 group-hover:scale-100 transition-transform">
-                            Baca Cerita
-                        </button>
-                    </div>
-                </div>
-                <div class="px-2 pb-2 text-center">
-                    <h3
-                        class="font-balsamiq text-lg font-bold text-slate-800 mb-1 truncate group-hover:text-amber-500 transition-colors">
-                        Dimensi Paralel
-                    </h3>
-                    <p class="text-xs font-medium text-slate-500 mb-3">Oleh <span
-                            class="font-bold text-slate-700">Ken</span></p>
-                    <div class="flex items-center justify-center gap-4 pt-3 border-t border-slate-100">
-                        <div class="flex items-center gap-1 text-slate-600 font-bold text-xs">
-                            <span class="text-amber-400 text-sm">★</span> 4.6
-                        </div>
-                        <div class="w-1 h-1 bg-slate-300 rounded-full"></div>
-                        <div class="flex items-center gap-1 text-slate-500 font-bold text-xs">
-                            👁️ 62K
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            @endforelse
         </div>
+
     </div>
 </section>

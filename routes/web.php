@@ -5,11 +5,13 @@ use App\Http\Controllers\Admin\BookManageController;
 use App\Http\Controllers\Admin\CategoryGenreController;
 use App\Http\Controllers\Admin\SubmissionManageController;
 use App\Http\Controllers\Admin\UserManageController;
-use App\Http\Controllers\BooksController;
 use App\Http\Controllers\Contributor\ChapterController;
 use App\Http\Controllers\Contributor\ContributorController as ContributorContributorController;
 use App\Http\Controllers\Contributor\StoryController;
 use App\Http\Controllers\Contributor\SubmissionController;
+use App\Http\Controllers\Frontend\BooksController;
+use App\Http\Controllers\Frontend\ExploreController;
+use App\Http\Controllers\Frontend\LandingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController as UserUserController;
 use Illuminate\Support\Facades\Route;
@@ -20,13 +22,19 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('frontend.landing.index');
-})->name('home');
+// Route::get('/', function () {
+//     return view('frontend.landing.index');
+// })->name('home');
 
-Route::get('/books', [BooksController::class, 'index'])->name('books.index');
-Route::get('/books/detail', [BooksController::class, 'detail'])->name('books.detail');
-Route::get('/genres', [BooksController::class, 'genre'])->name('genre.index');
+Route::get('/', [LandingController::class, 'index'])->name('home');
+
+Route::get('/books', [BooksController::class, 'library'])->name('books.index');
+Route::get('/story/{slug}', [BooksController::class, 'readStory'])->name('books.story');
+
+Route::get('/explore', [ExploreController::class, 'index'])->name('explore.index');
+Route::get('/category/{slug}', [ExploreController::class, 'showCategory'])->name('explore.category');
+Route::get('/genre/{slug}', [ExploreController::class, 'showGenre'])->name('explore.genre');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +62,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/read/{book_slug}/chapter-{chapter_number}', [BooksController::class, 'readChapter'])->name('books.read');
 
 
     // 3. AREA USER BIASA (Pembaca Cilik / Orang Tua)

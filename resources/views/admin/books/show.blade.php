@@ -171,8 +171,20 @@
                                         $chapter->created_at->format('d M Y') }}</p>
                                 </div>
                             </div>
-                            <button
-                                @click="openPreview({ title: '{{ addslashes($chapter->title) }}', number: {{ $chapter->chapter_number }}, content: `{{ str_replace('`', '\`', nl2br(e($chapter->content))) }}` })"
+                            @php
+                            // Merapikan konten baik yang berbentuk Array (Lembaran) maupun Teks biasa
+                            // nl2br() mengubah 'Enter' menjadi tag <br> agar terbaca oleh HTML
+                            $formattedContent = is_array($chapter->content)
+                            ? collect($chapter->content)->pluck('text')->map(fn($t) => nl2br(e($t)))->join('<br><br>
+                            <hr><br>')
+                            : nl2br(e($chapter->content));
+                            @endphp
+
+                            <button @click="openPreview({
+                                            title: @js($chapter->title),
+                                            number: @js($chapter->chapter_number),
+                                            content: @js($formattedContent)
+                                        })"
                                 class="w-full sm:w-auto bg-white border border-slate-200 text-blue-600 hover:bg-blue-50 hover:border-blue-200 px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm flex items-center justify-center gap-2">
                                 <i class="fa-solid fa-eye"></i> Baca Preview
                             </button>

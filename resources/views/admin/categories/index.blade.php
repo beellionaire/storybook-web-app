@@ -53,8 +53,12 @@
                 <div
                     class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1 transition-transform group relative">
                     <div
-                        class="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-sm border border-amber-100">
-                        {{ $category->icon ?? '📚' }}
+                        class="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-sm border border-amber-100 text-amber-500">
+                        @if(!empty(trim($category->icon)))
+                        <i class="{{ trim($category->icon) }}"></i>
+                        @else
+                        📚
+                        @endif
                     </div>
                     <h3 class="text-xl font-black text-slate-800 tracking-tight mb-1">{{ $category->name }}</h3>
                     <p class="text-xs text-slate-400 font-semibold mb-4">Slug: {{ $category->slug }}</p>

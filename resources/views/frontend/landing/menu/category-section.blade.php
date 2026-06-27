@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <section class="py-20 lg:py-28 bg-[#fff] relative font-sans overflow-hidden isolate">
 
     <img src="{{ asset('images/left-genre-deco.jpeg') }}" alt="Dekorasi Kiri"
@@ -16,105 +18,95 @@
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
 
-            <a href="/genre/scifi"
-                class="group p-6 sm:p-8 bg-blue-100 rounded-3xl border-2 border-blue-200 hover:bg-blue-200 hover:border-blue-400 hover:shadow-[0_10px_30px_rgba(59,130,246,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
-                <div
-                    class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300 border border-blue-100 p-3.5 sm:p-4">
-                    <img src="{{ asset('images/icons/rocket.png') }}" alt="Luar Angkasa"
-                        class="w-full h-full object-contain">
-                </div>
-                <h3
-                    class="font-balsamiq text-lg sm:text-xl font-bold text-slate-800 mb-1 group-hover:text-blue-700 transition-colors">
-                    Luar Angkasa
-                </h3>
-                <p class="text-xs font-bold text-blue-600 uppercase tracking-widest">12.8K Cerita</p>
-            </a>
+            @php
+            // Mapping Warna persis seperti desain asli (tanpa ikon karena ikon dari DB)
+            $themes = [
+            [
+            'wrapper' => 'bg-blue-100 border-blue-200 hover:bg-blue-200 hover:border-blue-400
+            hover:shadow-[0_10px_30px_rgba(59,130,246,0.3)]',
+            'icon_box' => 'border-blue-100 group-hover:-rotate-6',
+            'title' => 'group-hover:text-blue-700',
+            'count' => 'text-blue-600',
+            ],
+            [
+            'wrapper' => 'bg-purple-100 border-purple-200 hover:bg-purple-200 hover:border-purple-400
+            hover:shadow-[0_10px_30px_rgba(168,85,247,0.3)]',
+            'icon_box' => 'border-purple-100 group-hover:rotate-6',
+            'title' => 'group-hover:text-purple-700',
+            'count' => 'text-purple-600',
+            ],
+            [
+            'wrapper' => 'bg-yellow-100 border-yellow-200 hover:bg-yellow-200 hover:border-yellow-400
+            hover:shadow-[0_10px_30px_rgba(234,179,8,0.3)]',
+            'icon_box' => 'border-yellow-100 group-hover:-rotate-6',
+            'title' => 'group-hover:text-yellow-700',
+            'count' => 'text-yellow-600',
+            ],
+            [
+            'wrapper' => 'bg-pink-100 border-pink-200 hover:bg-pink-200 hover:border-pink-400
+            hover:shadow-[0_10px_30px_rgba(236,72,153,0.3)]',
+            'icon_box' => 'border-pink-100 group-hover:rotate-6',
+            'title' => 'group-hover:text-pink-700',
+            'count' => 'text-pink-600',
+            ],
+            [
+            'wrapper' => 'bg-emerald-100 border-emerald-200 hover:bg-emerald-200 hover:border-emerald-400
+            hover:shadow-[0_10px_30px_rgba(16,185,129,0.3)]',
+            'icon_box' => 'border-emerald-100 group-hover:-rotate-6',
+            'title' => 'group-hover:text-emerald-700',
+            'count' => 'text-emerald-600',
+            ],
+            [
+            'wrapper' => 'bg-orange-100 border-orange-200 hover:bg-orange-200 hover:border-orange-400
+            hover:shadow-[0_10px_30px_rgba(249,115,22,0.3)]',
+            'icon_box' => 'border-orange-100 group-hover:rotate-6',
+            'title' => 'group-hover:text-orange-700',
+            'count' => 'text-orange-600',
+            ],
+            [
+            'wrapper' => 'bg-rose-100 border-rose-200 hover:bg-rose-200 hover:border-rose-400
+            hover:shadow-[0_10px_30px_rgba(244,63,94,0.3)]',
+            'icon_box' => 'border-rose-100 group-hover:-rotate-6',
+            'title' => 'group-hover:text-rose-700',
+            'count' => 'text-rose-600',
+            ]
+            ];
+            @endphp
 
-            <a href="/genre/fantasy"
-                class="group p-6 sm:p-8 bg-purple-100 rounded-3xl border-2 border-purple-200 hover:bg-purple-200 hover:border-purple-400 hover:shadow-[0_10px_30px_rgba(168,85,247,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
-                <div
-                    class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 border border-purple-100 p-3.5 sm:p-4">
-                    <img src="{{ asset('images/icons/unicorn.png') }}" alt="Dunia Sihir"
-                        class="w-full h-full object-contain">
-                </div>
-                <h3
-                    class="font-balsamiq text-lg sm:text-xl font-bold text-slate-800 mb-1 group-hover:text-purple-700 transition-colors">
-                    Dunia Sihir
-                </h3>
-                <p class="text-xs font-bold text-purple-600 uppercase tracking-widest">28.5K Cerita</p>
-            </a>
+            @foreach($categories->take(7) as $index => $category)
+            @php
+            // Terapkan tema warna bergiliran sesuai urutan index
+            $theme = $themes[$index % count($themes)];
+            @endphp
 
-            <a href="/genre/comedy"
-                class="group p-6 sm:p-8 bg-yellow-100 rounded-3xl border-2 border-yellow-200 hover:bg-yellow-200 hover:border-yellow-400 hover:shadow-[0_10px_30px_rgba(234,179,8,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
-                <div
-                    class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300 border border-yellow-100 p-3.5 sm:p-4">
-                    <img src="{{ asset('images/icons/laugh.png') }}" alt="Cerita Lucu"
-                        class="w-full h-full object-contain">
-                </div>
-                <h3
-                    class="font-balsamiq text-lg sm:text-xl font-bold text-slate-800 mb-1 group-hover:text-yellow-700 transition-colors">
-                    Cerita Lucu
-                </h3>
-                <p class="text-xs font-bold text-yellow-600 uppercase tracking-widest">15.9K Cerita</p>
-            </a>
+            <a href="{{ url('/category/' . Str::slug($category->name)) }}"
+                class="group p-6 sm:p-8 rounded-3xl border-2 hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center {{ $theme['wrapper'] }}">
 
-            <a href="/genre/friendship"
-                class="group p-6 sm:p-8 bg-pink-100 rounded-3xl border-2 border-pink-200 hover:bg-pink-200 hover:border-pink-400 hover:shadow-[0_10px_30px_rgba(236,72,153,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
                 <div
-                    class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 border border-pink-100 p-3.5 sm:p-4">
-                    <img src="{{ asset('images/icons/handshake.png') }}" alt="Persahabatan"
-                        class="w-full h-full object-contain">
-                </div>
-                <h3
-                    class="font-balsamiq text-lg sm:text-xl font-bold text-slate-800 mb-1 group-hover:text-pink-700 transition-colors">
-                    Persahabatan
-                </h3>
-                <p class="text-xs font-bold text-pink-600 uppercase tracking-widest">45.2K Cerita</p>
-            </a>
+                    class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 transition-transform duration-300 border p-3.5 sm:p-4 {{ $theme['icon_box'] }}">
 
-            <a href="/genre/mystery"
-                class="group p-6 sm:p-8 bg-emerald-100 rounded-3xl border-2 border-emerald-200 hover:bg-emerald-200 hover:border-emerald-400 hover:shadow-[0_10px_30px_rgba(16,185,129,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
-                <div
-                    class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300 border border-emerald-100 p-3.5 sm:p-4">
-                    <img src="{{ asset('images/icons/detective.png') }}" alt="Misteri Seru"
-                        class="w-full h-full object-contain">
-                </div>
-                <h3
-                    class="font-balsamiq text-lg sm:text-xl font-bold text-slate-800 mb-1 group-hover:text-emerald-700 transition-colors">
-                    Misteri Seru
-                </h3>
-                <p class="text-xs font-bold text-emerald-600 uppercase tracking-widest">10.2K Cerita</p>
-            </a>
+                    @php
+                    // Memastikan tidak ada spasi kosong, jika ya gunakan ikon buku default
+                    $iconClass = !empty(trim($category->icon)) ? trim($category->icon) : 'fa-solid fa-book';
+                    @endphp
 
-            <a href="/genre/animals"
-                class="group p-6 sm:p-8 bg-orange-100 rounded-3xl border-2 border-orange-200 hover:bg-orange-200 hover:border-orange-400 hover:shadow-[0_10px_30px_rgba(249,115,22,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
-                <div
-                    class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 border border-orange-100 p-3.5 sm:p-4">
-                    <img src="{{ asset('images/icons/lion.png') }}" alt="Dunia Hewan"
-                        class="w-full h-full object-contain">
-                </div>
-                <h3
-                    class="font-balsamiq text-lg sm:text-xl font-bold text-slate-800 mb-1 group-hover:text-orange-700 transition-colors">
-                    Dunia Hewan
-                </h3>
-                <p class="text-xs font-bold text-orange-600 uppercase tracking-widest">8.4K Cerita</p>
-            </a>
+                    <i class="{{ $iconClass }} text-3xl sm:text-4xl {{ $theme['count'] }} group-hover:scale-110 transition-transform"></i>
 
-            <a href="/genre/fairytale"
-                class="group p-6 sm:p-8 bg-rose-100 rounded-3xl border-2 border-rose-200 hover:bg-rose-200 hover:border-rose-400 hover:shadow-[0_10px_30px_rgba(244,63,94,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
-                <div
-                    class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300 border border-rose-100 p-3.5 sm:p-4">
-                    <img src="{{ asset('images/icons/castle.png') }}" alt="Dongeng Klasik"
-                        class="w-full h-full object-contain">
                 </div>
-                <h3
-                    class="font-balsamiq text-lg sm:text-xl font-bold text-slate-800 mb-1 group-hover:text-rose-700 transition-colors">
-                    Dongeng Klasik
-                </h3>
-                <p class="text-xs font-bold text-rose-600 uppercase tracking-widest">52.1K Cerita</p>
-            </a>
 
-            <a href="/genres"
+                <h3
+                    class="font-balsamiq text-lg sm:text-xl font-bold text-slate-800 mb-1 transition-colors {{ $theme['title'] }}">
+                    {{ $category->name }}
+                </h3>
+
+                <p class="text-xs font-bold uppercase tracking-widest {{ $theme['count'] }}">
+                    {{ $category->books_count > 999 ? round($category->books_count/1000, 1) . 'K' :
+                    ($category->books_count ?? 0) }} Cerita
+                </p>
+            </a>
+            @endforeach
+
+            <a href="{{ route('explore.index') }}"
                 class="group p-6 sm:p-8 bg-slate-800 rounded-3xl border-2 border-slate-800 hover:bg-slate-900 hover:shadow-[0_10px_30px_rgba(15,23,42,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center text-center">
                 <div
                     class="w-16 h-16 sm:w-20 sm:h-20 bg-white/10 rounded-full flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300 border border-white/20 p-3.5 sm:p-4">
@@ -126,7 +118,8 @@
                 <h3 class="font-balsamiq text-lg sm:text-xl font-bold text-white mb-1">
                     Lihat Semua
                 </h3>
-                <p class="text-xs font-bold text-slate-300 uppercase tracking-widest">24+ Kategori</p>
+                <p class="text-xs font-bold text-slate-300 uppercase tracking-widest">{{ count($categories) }}+ Kategori
+                </p>
             </a>
 
         </div>
