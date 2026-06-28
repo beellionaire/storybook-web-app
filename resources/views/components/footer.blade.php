@@ -4,8 +4,13 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-12">
 
             <div class="col-span-2 md:col-span-1">
-                <a href="/" class="text-3xl font-black text-slate-900 flex items-center gap-1.5 tracking-tight mb-4">
+                {{-- <a href="/"
+                    class="text-3xl font-black text-slate-900 flex items-center gap-1.5 tracking-tight mb-4">
                     Kita<span class="text-amber-500">Baca.</span>
+                </a> --}}
+
+                <a href="/">
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="logo" class="w-36 mb-3">
                 </a>
                 <p class="text-xs font-medium text-slate-500 leading-relaxed max-w-xs">
                     Platform membaca interaktif generasi baru. Temukan duniamu, satu halaman setiap kalinya.

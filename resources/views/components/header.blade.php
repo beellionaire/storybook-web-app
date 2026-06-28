@@ -6,9 +6,14 @@
         <div class="flex items-center justify-between h-20 transition-all duration-300" :class="{ 'h-16': scrolled }">
 
             <div class="flex items-center gap-8">
-                <a href="/"
+                {{-- <a href="/"
                     class="text-2xl font-black tracking-tight text-slate-900 transition-transform hover:scale-105">
                     Kita<span class="text-amber-500">Baca.</span>
+                </a>
+                --}}
+
+                <a href="/">
+                    <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-40">
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-6">

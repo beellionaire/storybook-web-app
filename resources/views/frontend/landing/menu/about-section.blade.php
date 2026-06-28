@@ -19,10 +19,18 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         <div class="mx-auto max-w-4xl text-center">
-            <h2
-                class="font-balsamiq text-3xl sm:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-800 drop-shadow-sm">
-                Tentang <span class="font-sans">Kita<span class="text-amber-500">Baca.</span></span>
-            </h2>
+
+            <div class="flex flex-row items-center justify-center gap-2">
+                <h2
+                    class="font-sans text-5xl sm:text-5xl lg:text-5xl font-bold leading-relaxed text-slate-800 drop-shadow-sm">
+                    Tentang
+                </h2>
+
+                <a href="/">
+                    <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-48">
+                </a>
+            </div>
+
             <p class="mt-6 mx-auto max-w-3xl text-lg lg:text-xl font-medium leading-relaxed text-slate-600 transition-all duration-700 delay-200 ease-out"
                 :class="mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'">
                 Kami membuat kegiatan membaca jadi seru 📘 dan mengasyikkan ✨ untuk anak dengan cerita interaktif, kuis
