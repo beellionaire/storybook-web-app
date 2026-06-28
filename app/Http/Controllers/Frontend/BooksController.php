@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\Chapter;
+use App\Models\ReadingProgress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BooksController extends Controller
 {
@@ -104,6 +106,13 @@ class BooksController extends Controller
             ->where('chapter_number', $chapter_number)
             ->where('status', 'published')
             ->firstOrFail();
+
+        if (Auth::check()) {
+            ReadingProgress::updateOrCreate(
+                ['user_id' => Auth::id(), 'book_id' => $book->id],
+                ['chapter_id' => $chapter->id, 'updated_at' => now()]
+            );
+        }
 
         // 3. Cari Bab Sebelumnya (untuk navigasi)
         $prevChapter = Chapter::where('book_id', $book->id)

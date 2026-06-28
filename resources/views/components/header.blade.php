@@ -1,7 +1,7 @@
 <header x-data="{ mobileMenuOpen: false, profileOpen: false, scrolled: false }"
     @scroll.window="scrolled = (window.pageYOffset > 10)"
     :class="{ 'bg-white/80 backdrop-blur-md shadow-sm border-gray-200': scrolled, 'bg-transparent border-transparent': !scrolled }"
-    class="fixed top-0 left-0 w-full z-50 border-b transition-all duration-300">
+    class="fixed top-0 left-0 w-full z-[100] border-b transition-all duration-300">
     <div class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20 transition-all duration-300" :class="{ 'h-16': scrolled }">
 
@@ -81,7 +81,7 @@
                         <a href="/profile"
                             class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-amber-600 transition-colors">Profil
                             Saya</a>
-                        <a href="/library"
+                        <a href="{{ route('library.index') }}"
                             class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-amber-600 transition-colors">Perpustakaan</a>
                         <form method="POST" action="/logout">
                             @csrf

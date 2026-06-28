@@ -12,6 +12,7 @@ use App\Http\Controllers\Contributor\SubmissionController;
 use App\Http\Controllers\Frontend\BooksController;
 use App\Http\Controllers\Frontend\ExploreController;
 use App\Http\Controllers\Frontend\LandingController;
+use App\Http\Controllers\Frontend\LibraryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController as UserUserController;
 use Illuminate\Support\Facades\Route;
@@ -64,6 +65,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/read/{book_slug}/chapter-{chapter_number}', [BooksController::class, 'readChapter'])->name('books.read');
+    Route::get('/library', [LibraryController::class, 'index'])->name('library.index');
+    Route::post('/library/watchlist/{book}', [LibraryController::class, 'toggleWatchlist'])->name('library.watchlist.toggle');
 
 
     // 3. AREA USER BIASA (Pembaca Cilik / Orang Tua)

@@ -107,15 +107,25 @@
                             </button>
                             @endif
 
-                            <button
-                                class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 px-8 py-3.5 rounded-xl font-bold text-sm transition-all active:scale-95 shadow-sm">
-                                <svg class="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 4v16m8-8H4" />
-                                </svg>
-                                Pustaka
-                            </button>
+                            @php
+                            $inWatchlist = auth()->user()->watchlists()->where('book_id', $book->id)->exists();
+                            @endphp
+
+                            <form action="{{ route('library.watchlist.toggle', $book->id) }}" method="POST"
+                                class="w-full sm:w-auto">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full inline-flex justify-center items-center gap-2 bg-white hover:bg-slate-50 border {{ $inWatchlist ? 'border-amber-500 text-amber-600' : 'border-slate-300 text-slate-700' }} px-8 py-3.5 rounded-xl font-bold text-sm transition-all active:scale-95 shadow-sm">
+
+                                    @if($inWatchlist)
+                                    <i class="fa-solid fa-check"></i> Tersimpan
+                                    @else
+                                    <i class="fa-solid fa-plus text-slate-400"></i> Pustaka
+                                    @endif
+
+                                </button>
+                            </form>
+                            
                             @else
                             <a href="{{ route('login') }}"
                                 class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-all shadow-md active:scale-95">

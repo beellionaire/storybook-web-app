@@ -50,4 +50,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(ReadingHistory::class);
     }
+
+    // Tambahkan relasi ini di dalam class User
+    public function watchlists()
+    {
+        return $this->hasMany(Watchlist::class);
+    }
+
+    // (Opsional) Tambahkan juga relasi untuk progres membaca agar lebih lengkap
+    public function readingProgresses()
+    {
+        return $this->hasMany(ReadingProgress::class);
+    }
 }
