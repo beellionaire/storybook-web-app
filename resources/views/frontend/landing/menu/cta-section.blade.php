@@ -37,7 +37,9 @@
                     Bergabunglah dengan ribuan penulis yang telah menemukan pembaca setia mereka. Jadilah inspirasi!
                 </p>
 
-                <a href="/write"
+                <a href="{{ (auth()->check() && (auth()->user()->role === 'admin' || auth()->user()->role === 'contributor'))
+                    ? route('contributor.stories.index')
+                    : route('contributor.apply.create') }}"
                     class="inline-block bg-slate-800 hover:bg-slate-900 text-white font-bold py-3.5 px-8 rounded-2xl text-sm transition-all shadow-md active:scale-95">
                     Mulai Menulis Sekarang
                 </a>

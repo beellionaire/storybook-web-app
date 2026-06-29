@@ -2,32 +2,31 @@
     <div
         class="fixed inset-0 z-50 flex flex-col lg:flex-row bg-white font-sans text-slate-800 selection:bg-amber-200 selection:text-amber-900">
 
-        <div class="hidden lg:flex lg:w-1/2 relative bg-slate-900 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1474366521946-c3d4b507abf2?q=80&w=1200&auto=format&fit=crop"
-                alt="Menulis Cerita"
-                class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity hover:scale-105 transition-transform duration-[20s] ease-out">
+        <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+            <img src="{{ asset('images/bg-auth.jpg') }}" alt="Membaca Novel"
+                class="absolute inset-0 w-full h-full object-cover  hover:scale-105 transition-transform duration-[20s] ease-out">
 
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent"></div>
 
             <div class="relative z-10 p-12 lg:p-16 flex flex-col justify-between h-full w-full">
                 <div>
-                    <a href="/" class="text-3xl font-black text-white flex items-center gap-1.5 tracking-tight">
-                        Story<span class="text-amber-500">Hub</span>
+                    <a href="/">
+                        <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-40">
                     </a>
                 </div>
 
                 <div class="max-w-md">
                     <div
                         class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold uppercase tracking-widest mb-6">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        Komunitas Bertumbuh
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                        Platform Literasi Generasi Baru
                     </div>
                     <h2 class="text-4xl font-black text-white leading-tight mb-5 drop-shadow-md">
-                        Mulai perjalanan menulismu hari ini.
+                        Cerita yang terasa hidup sejak halaman pertama.
                     </h2>
                     <p class="text-slate-300 text-sm leading-relaxed font-medium">
-                        Buat akun gratismu sekarang. Publikasikan karya orisinalmu, temukan pembaca setia, dan jadilah
-                        bagian dari ekosistem kreator paling suportif di dunia.
+                        Bergabunglah dengan jutaan pembaca dan penulis. Temukan petualangan baru, simpan karya
+                        favoritmu, dan dukung penulis kesayanganmu langsung dari sini.
                     </p>
                 </div>
             </div>
@@ -37,8 +36,8 @@
             <div class="w-full max-w-sm">
 
                 <div class="lg:hidden mb-10 text-center flex justify-center">
-                    <a href="/" class="text-3xl font-black text-slate-900 flex items-center gap-1.5 tracking-tight">
-                        Story<span class="text-amber-500">Hub</span>
+                    <a href="/">
+                        <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-40">
                     </a>
                 </div>
 

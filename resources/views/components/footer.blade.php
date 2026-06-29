@@ -69,7 +69,7 @@
 
         <div class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-slate-100 gap-4">
             <p class="text-xs font-medium text-slate-400">
-                &copy; {{ date('Y') }} StoryHub. Dibuat dengan cinta untuk literasi.
+                &copy; {{ date('Y') }} KitaBaca. Dibuat dengan cinta untuk literasi.
             </p>
             <div class="flex space-x-4">
                 <a href="#" class="text-slate-400 hover:text-amber-500 transition-colors">
