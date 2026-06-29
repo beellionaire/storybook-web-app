@@ -7,14 +7,10 @@
                 <p class="text-slate-500 font-medium">Ringkasan statistik dan aktivitas platform StoryHub hari ini.</p>
             </div>
 
-            <button
+            <a href="{{ route('admin.submissions.index') }}"
                 class="inline-flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm">
-                <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Bulan Ini
-            </button>
+                Kelola Persetujuan
+            </a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-10">
@@ -24,9 +20,8 @@
                 <div>
                     <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Total Pengguna</p>
                     <div class="flex items-end gap-3">
-                        <h3 class="text-4xl font-black text-slate-800 tracking-tight">1,248</h3>
-                        <span
-                            class="text-emerald-500 bg-emerald-50 px-2 py-1 rounded-lg text-xs font-bold mb-1.5">+12%</span>
+                        <h3 class="text-4xl font-black text-slate-800 tracking-tight">{{ number_format($totalUsers) }}
+                        </h3>
                     </div>
                 </div>
                 <div
@@ -43,9 +38,8 @@
                 <div>
                     <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Total Cerita</p>
                     <div class="flex items-end gap-3">
-                        <h3 class="text-4xl font-black text-slate-800 tracking-tight">452</h3>
-                        <span
-                            class="text-emerald-500 bg-emerald-50 px-2 py-1 rounded-lg text-xs font-bold mb-1.5">+5%</span>
+                        <h3 class="text-4xl font-black text-slate-800 tracking-tight">{{ number_format($totalBooks) }}
+                        </h3>
                     </div>
                 </div>
                 <div
@@ -63,7 +57,8 @@
                     <p class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-2 flex items-center gap-2">
                         Menunggu Review
                     </p>
-                    <h3 class="text-4xl font-black text-slate-900 tracking-tight">5 <span
+                    <h3 class="text-4xl font-black text-slate-900 tracking-tight">{{
+                        number_format($pendingRequestsCount) }} <span
                             class="text-xl font-semibold text-slate-500 tracking-normal">Pengajuan</span></h3>
                 </div>
                 <div
@@ -82,17 +77,16 @@
 
         <div
             class="bg-white rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden">
-
             <div
                 class="px-6 lg:px-8 py-6 border-b border-slate-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                    <h2 class="text-xl font-black text-slate-800">Persetujuan Penulis Baru</h2>
+                    <h2 class="text-xl font-black text-slate-800">Pengajuan Terbaru</h2>
                     <p class="text-sm text-slate-500 font-medium mt-1">Review dan verifikasi data pengguna yang ingin
                         menjadi kontributor.</p>
                 </div>
-                <a href="#"
+                <a href="{{ route('admin.submissions.index') }}"
                     class="inline-flex items-center gap-1 text-sm text-blue-600 font-bold hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-xl transition-colors">
-                    Lihat Semua
+                    Lihat Semua Pengajuan
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
@@ -104,86 +98,67 @@
                     <thead class="bg-slate-50/50 text-slate-400 text-[11px] uppercase tracking-widest font-bold">
                         <tr>
                             <th class="px-6 lg:px-8 py-4 rounded-tl-lg">Informasi Pendaftar</th>
+                            <th class="px-6 py-4">Usia</th>
                             <th class="px-6 py-4">Tanggal Pengajuan</th>
                             <th class="px-6 py-4">Status</th>
                             <th class="px-6 lg:px-8 py-4 text-right rounded-tr-lg">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-50 text-sm">
-                        <tr class="hover:bg-slate-50/50 transition-colors group">
-                            <td class="px-6 lg:px-8 py-4">
-                                <div class="flex items-center gap-4">
-                                    <div
-                                        class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold shadow-sm">
-                                        BS
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-slate-800">Budi Santoso</p>
-                                        <p class="text-slate-500 font-medium">budi@example.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 text-slate-600 font-medium">
-                                25 Jun 2026
-                            </td>
-                            <td class="px-6 py-4">
-                                <span
-                                    class="inline-flex items-center gap-1.5 bg-amber-50 text-amber-600 px-3 py-1.5 rounded-full text-xs font-bold border border-amber-100/50">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                                    Pending
-                                </span>
-                            </td>
-                            <td class="px-6 lg:px-8 py-4 text-right">
-                                <div
-                                    class="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
-                                    <button
-                                        class="bg-white border border-emerald-200 text-emerald-600 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 px-4 py-2 rounded-xl font-bold transition-all shadow-sm">
-                                        Terima
-                                    </button>
-                                    <button
-                                        class="bg-white border border-rose-200 text-rose-600 hover:bg-rose-500 hover:text-white hover:border-rose-500 px-4 py-2 rounded-xl font-bold transition-all shadow-sm">
-                                        Tolak
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
 
+                        @forelse($recentSubmissions as $submission)
                         <tr class="hover:bg-slate-50/50 transition-colors group">
                             <td class="px-6 lg:px-8 py-4">
                                 <div class="flex items-center gap-4">
                                     <div
-                                        class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center font-bold shadow-sm">
-                                        SN
+                                        class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold shadow-sm">
+                                        {{ strtoupper(substr($submission->name, 0, 2)) }}
                                     </div>
                                     <div>
-                                        <p class="font-bold text-slate-800">Siti Nurhaliza</p>
-                                        <p class="text-slate-500 font-medium">siti.nur@example.com</p>
+                                        <p class="font-bold text-slate-800">{{ $submission->name }}</p>
+                                        <p class="text-slate-500 font-medium">{{ $submission->user->email ?? '-' }}</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-6 py-4 text-slate-600 font-medium">
-                                24 Jun 2026
+                                {{ $submission->age }} Tahun
+                            </td>
+                            <td class="px-6 py-4 text-slate-600 font-medium">
+                                {{ $submission->created_at->format('d M Y') }}
                             </td>
                             <td class="px-6 py-4">
+                                @if($submission->status === 'pending')
                                 <span
                                     class="inline-flex items-center gap-1.5 bg-amber-50 text-amber-600 px-3 py-1.5 rounded-full text-xs font-bold border border-amber-100/50">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                                    Pending
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Pending
                                 </span>
+                                @elseif($submission->status === 'approved')
+                                <span
+                                    class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-600 px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-100/50">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Disetujui
+                                </span>
+                                @else
+                                <span
+                                    class="inline-flex items-center gap-1.5 bg-rose-50 text-rose-600 px-3 py-1.5 rounded-full text-xs font-bold border border-rose-100/50">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Ditolak
+                                </span>
+                                @endif
                             </td>
                             <td class="px-6 lg:px-8 py-4 text-right">
-                                <div class="flex items-center justify-end gap-2">
-                                    <button
-                                        class="bg-white border border-emerald-200 text-emerald-600 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 px-4 py-2 rounded-xl font-bold transition-all shadow-sm">
-                                        Terima
-                                    </button>
-                                    <button
-                                        class="bg-white border border-rose-200 text-rose-600 hover:bg-rose-500 hover:text-white hover:border-rose-500 px-4 py-2 rounded-xl font-bold transition-all shadow-sm">
-                                        Tolak
-                                    </button>
-                                </div>
+                                <a href="{{ route('admin.submissions.index', ['search' => $submission->name]) }}"
+                                    class="inline-block bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 px-4 py-2 rounded-xl font-bold transition-all shadow-sm text-xs">
+                                    Tinjau Pengajuan
+                                </a>
                             </td>
                         </tr>
+                        @empty
+                        <tr>
+                            <td colspan="5" class="px-6 py-12 text-center text-slate-400 font-medium">
+                                Belum ada pengajuan penulis saat ini.
+                            </td>
+                        </tr>
+                        @endforelse
+
                     </tbody>
                 </table>
             </div>

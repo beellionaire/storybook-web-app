@@ -4,14 +4,9 @@
 <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
     class="fixed inset-y-0 left-0 z-50 w-72 bg-white/95 backdrop-blur-xl border-r border-slate-100 transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 flex flex-col shadow-[10px_0_40px_rgba(0,0,0,0.03)]">
 
-    <div class="flex items-center h-20 px-8 shrink-0 border-b border-slate-50">
-        <a href="/" class="text-2xl font-black text-slate-900 tracking-tight font-sans flex items-center gap-3 group">
-            <div
-                class="w-9 h-9 bg-gradient-to-tr from-amber-400 to-orange-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-orange-500/30 group-hover:rotate-6 transition-transform duration-300">
-                <i class="fa-solid fa-book-open-reader text-sm"></i>
-            </div>
-            <span>Kita<span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500">Baca</span></span>
+    <div class="flex items-center h-20 px-8 shrink-0 border-b border-slate-50 justify-center">
+        <a href="/">
+            <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-44">
         </a>
     </div>
 

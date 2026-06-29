@@ -31,6 +31,8 @@
                 {{ $slot }}
             </main>
 
+            @include('admin.components.toast')
+
         </div>
     </div>
 

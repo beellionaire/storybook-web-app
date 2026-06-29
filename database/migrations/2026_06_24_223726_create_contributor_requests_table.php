@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('contributor_requests', function (Blueprint $table) {
             $table->id();
-            // Relasi ke tabel users
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('full_name');
-            $table->string('phone_number', 20);
-            $table->text('address');
-            $table->string('portfolio_link')->nullable();
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->text('admin_notes')->nullable();
+            $table->string('name'); // Nama
+            $table->integer('age'); // Usia
+            $table->text('address'); // Alamat
+            $table->text('reason'); // Alasan
+            $table->string('status')->default('pending'); // pending, approved, rejected
             $table->timestamps();
         });
     }

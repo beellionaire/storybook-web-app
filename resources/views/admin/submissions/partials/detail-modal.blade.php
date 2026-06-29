@@ -13,45 +13,47 @@
                 class="relative w-full max-w-lg bg-white rounded-[2rem] shadow-2xl border border-slate-100 overflow-hidden text-left">
 
                 <div class="p-6 sm:p-8">
-                    <h3 class="text-2xl font-black text-slate-900 tracking-tight mb-1">Detail Berkas Penulis
-                    </h3>
-                    <p class="text-sm text-slate-500 font-medium mb-6">Tinjau informasi lengkap sebelum
-                        melakukan verifikasi.</p>
+                    <h3 class="text-2xl font-black text-slate-900 tracking-tight mb-1">Detail Berkas Penulis</h3>
+                    <p class="text-sm text-slate-500 font-medium mb-6">Tinjau informasi lengkap sebelum melakukan
+                        verifikasi.</p>
 
                     <div class="space-y-4 border-t border-b border-slate-100 py-4 my-4 text-sm">
+
                         <div>
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Nama
-                                Sesuai KTP</p>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Nama Lengkap
+                            </p>
                             <p class="font-bold text-slate-800" x-text="selectedSubmission?.name"></p>
                         </div>
-                        <div>
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">
-                                Email Akun</p>
-                            <p class="font-medium text-slate-600" x-text="selectedSubmission?.email"></p>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Email
+                                    Akun</p>
+                                <p class="font-medium text-slate-600" x-text="selectedSubmission?.email"></p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Usia</p>
+                                <p class="font-medium text-slate-600"><span x-text="selectedSubmission?.age"></span>
+                                    Tahun</p>
+                            </div>
                         </div>
+
                         <div>
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">
-                                Nomor Telepon / WA</p>
-                            <p class="font-medium text-slate-600" x-text="selectedSubmission?.phone"></p>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Alamat
+                                Domisili</p>
+                            <p class="font-medium text-slate-600 leading-relaxed whitespace-pre-line"
+                                x-text="selectedSubmission?.address"></p>
                         </div>
+
                         <div>
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">
-                                Alamat Tempat Tinggal</p>
-                            <p class="font-medium text-slate-600 leading-relaxed" x-text="selectedSubmission?.address">
-                            </p>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Alasan Ingin
+                                Menulis</p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 mt-1">
+                                <p class="font-medium text-slate-600 leading-relaxed whitespace-pre-line text-xs"
+                                    x-text="selectedSubmission?.reason"></p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Link
-                                Portofolio / Karya</p>
-                            <a :href="selectedSubmission?.portfolio" target="_blank"
-                                class="inline-flex items-center gap-1.5 text-blue-600 font-bold hover:underline">
-                                <span x-text="selectedSubmission?.portfolio"></span>
-                                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </a>
-                        </div>
+
                     </div>
 
                     <template x-if="selectedSubmission?.status === 'pending'">

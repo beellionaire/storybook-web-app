@@ -54,19 +54,13 @@ class SubmissionManageController extends Controller
         return back()->with('success', 'Pengajuan berhasil disetujui. Pengguna sekarang adalah Contributor.');
     }
 
-    // 3. Menolak Pendaftaran (Reject)
     public function reject(Request $request, $id)
     {
-        // Validasi wajib mengisi alasan penolakan
-        $request->validate([
-            'admin_notes' => ['required', 'string', 'max:1000'],
-        ]);
-
         $submission = ContributorRequest::findOrFail($id);
 
-        // Ubah status menjadi ditolak dan simpan alasan Admin
+        // Ubah status menjadi ditolak
         $submission->status = 'rejected';
-        $submission->admin_notes = $request->admin_notes;
+
         $submission->save();
 
         // Kembalikan role ke user biasa jika sebelumnya sempat disetujui lalu dibatalkan
@@ -75,6 +69,6 @@ class SubmissionManageController extends Controller
             $submission->user->save();
         }
 
-        return back()->with('success', 'Pengajuan pendaftaran telah ditolak.');
+        return back()->with('success', 'Pengajuan pendaftaran berhasil ditolak.');
     }
 }

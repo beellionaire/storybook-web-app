@@ -9,15 +9,7 @@ class ContributorRequest extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'full_name',
-        'phone_number',
-        'address',
-        'portfolio_link',
-        'status',
-        'admin_notes'
-    ];
+    protected $fillable = ['user_id', 'name', 'age', 'address', 'reason', 'status'];
 
     public function user()
     {

@@ -1,6 +1,5 @@
 <div x-show="rejectModalOpen" style="display: none;" class="relative z-50">
-    <div x-show="rejectModalOpen" x-transition.opacity class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm">
-    </div>
+    <div x-show="rejectModalOpen" x-transition.opacity class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
 
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div class="flex min-h-full items-center justify-center p-4">
@@ -12,35 +11,40 @@
                 x-transition:leave-end="opacity-0 translate-y-4 sm:scale-95" @click.away="rejectModalOpen = false"
                 class="relative w-full max-w-md bg-white rounded-[2rem] shadow-2xl border border-slate-100 overflow-hidden text-left">
 
-                <form :action="`{{ url('/admin/submissions') }}/${selectedSubmission?.id}/reject`" method="POST">
-                    @csrf
-                    <div class="p-6 sm:p-8">
-                        <h3 class="text-xl font-black text-slate-900 tracking-tight mb-1">Tolak Pendaftaran</h3>
-                        <p class="text-sm text-slate-500 font-medium mb-4">Berikan alasan penolakan kepada
-                            <strong class="text-slate-800" x-text="selectedSubmission?.name"></strong>.
-                        </p>
-
+                <div class="p-6 sm:p-8">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+                        </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Catatan
-                                / Alasan Penolakan</label>
-                            <textarea name="admin_notes" rows="4" required
-                                placeholder="Cth: Portofolio Anda belum sesuai dengan standar bacaan ramah anak atau link tidak dapat diakses."
-                                class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 focus:bg-white transition-all resize-none"></textarea>
+                            <h3 class="text-xl font-black text-slate-900 tracking-tight">Tolak Pendaftaran</h3>
+                            <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Konfirmasi Penolakan
+                            </p>
                         </div>
                     </div>
 
-                    <div
-                        class="bg-slate-50/50 px-6 py-4 flex flex-col sm:flex-row-reverse sm:px-8 border-t border-slate-100 gap-3 sm:gap-2">
-                        <button type="submit"
-                            class="w-full sm:w-auto inline-flex justify-center rounded-xl bg-red-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-red-700 transition-all">
-                            Kirim & Tolak
-                        </button>
+                    <p class="text-sm text-slate-600 mt-4 leading-relaxed">
+                        Apakah Anda yakin ingin menolak pengajuan kontributor dari <span
+                            class="font-bold text-slate-900" x-text="selectedSubmission?.name"></span>?
+                        Status pendaftarannya akan langsung diubah menjadi ditolak.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row-reverse gap-3 mt-8 pt-6 border-t border-slate-100">
+                        <form :action="`{{ url('/admin/submissions') }}/${selectedSubmission?.id}/reject`" method="POST"
+                            class="w-full sm:w-auto">
+                            @csrf
+                            <button type="submit"
+                                class="w-full justify-center inline-flex rounded-xl bg-rose-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-rose-700 transition-all active:scale-95">
+                                Ya, Tolak
+                            </button>
+                        </form>
                         <button type="button" @click="rejectModalOpen = false"
-                            class="w-full sm:w-auto inline-flex justify-center rounded-xl bg-white px-5 py-2.5 text-sm font-bold text-slate-700 shadow-sm ring-1 ring-inset ring-slate-200 hover:bg-slate-50 transition-all">
+                            class="w-full sm:w-auto inline-flex justify-center rounded-xl bg-white border border-slate-200 px-5 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-50 transition-all">
                             Batal
                         </button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

@@ -109,7 +109,8 @@
                 @endif
             </div>
 
-            <div x-show="currentPage === totalPages - 1" @if(count($contentData ?? [])> 1) style="display: none;" @endif
+            {{-- <div x-show="currentPage === totalPages - 1" @if(count($contentData ?? [])> 1) style="display: none;"
+                @endif
                 x-transition:enter="transition ease-out duration-500"
                 class="mt-16 pt-10 border-t border-slate-200/60 font-sans">
                 <div
@@ -124,7 +125,7 @@
                         <i class="fa-solid fa-heart text-white"></i> Beri Dukungan
                     </button>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans pb-12">
 

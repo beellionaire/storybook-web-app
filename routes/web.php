@@ -6,10 +6,10 @@ use App\Http\Controllers\Admin\CategoryGenreController;
 use App\Http\Controllers\Admin\SubmissionManageController;
 use App\Http\Controllers\Admin\UserManageController;
 use App\Http\Controllers\Contributor\ChapterController;
-use App\Http\Controllers\Contributor\ContributorController as ContributorContributorController;
+use App\Http\Controllers\Contributor\DashboardController;
 use App\Http\Controllers\Contributor\StoryController;
-use App\Http\Controllers\Contributor\SubmissionController;
 use App\Http\Controllers\Frontend\BooksController;
+use App\Http\Controllers\Frontend\ContributorApplyController;
 use App\Http\Controllers\Frontend\ExploreController;
 use App\Http\Controllers\Frontend\LandingController;
 use App\Http\Controllers\Frontend\LibraryController;
@@ -68,19 +68,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/library', [LibraryController::class, 'index'])->name('library.index');
     Route::post('/library/watchlist/{book}', [LibraryController::class, 'toggleWatchlist'])->name('library.watchlist.toggle');
 
+    Route::get('/apply-contributor', [ContributorApplyController::class, 'create'])->name('contributor.apply.create');
+    Route::post('/apply-contributor', [ContributorApplyController::class, 'store'])->name('contributor.apply.store');
 
-    // 3. AREA USER BIASA (Pembaca Cilik / Orang Tua)
+
     Route::middleware(['role:user'])->prefix('user')->name('user.')->group(function () {
-        // Akses url: /user/dashboard
         Route::get('/dashboard', [UserUserController::class, 'dashboard'])->name('dashboard');
-        // Route::get('/history', [UserController::class, 'readingHistory'])->name('history');
     });
 
-
-    // 4. AREA CONTRIBUTOR (Penulis)
     Route::middleware(['role:contributor,admin'])->prefix('contributor')->name('contributor.')->group(function () {
-        // Akses url: /contributor/dashboard
-        Route::get('/dashboard', [ContributorContributorController::class, 'dashboard'])->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::get('/stories', [StoryController::class, 'index'])->name('stories.index');
         Route::get('/stories/create', [StoryController::class, 'create'])->name('stories.create');
@@ -102,23 +99,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
 
-    // 5. AREA ADMIN (Hanya Admin)
     Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(function () {
-        // Akses url: /admin/dashboard
         Route::get('/dashboard', [AdminAdminController::class, 'dashboard'])->name('dashboard');
 
-        // Manajemen Platform
         Route::get('/users', [UserManageController::class, 'index'])->name('users.index');
         Route::post('/users', [UserManageController::class, 'store'])->name('users.store');
         Route::put('/users/{id}', [UserManageController::class, 'update'])->name('users.update');
         Route::delete('/users/{id}', [UserManageController::class, 'destroy'])->name('users.destroy');
 
-        // Submission
         Route::get('/submissions', [SubmissionManageController::class, 'index'])->name('submissions.index');
         Route::post('/submissions/{id}/approve', [SubmissionManageController::class, 'approve'])->name('submissions.approve');
         Route::post('/submissions/{id}/reject', [SubmissionManageController::class, 'reject'])->name('submissions.reject');
 
-        // Category
         Route::get('/taxonomy', [CategoryGenreController::class, 'index'])->name('categories.index');
         Route::post('/categories', [CategoryGenreController::class, 'storeCategory'])->name('categories.store');
         Route::delete('/categories/{id}', [CategoryGenreController::class, 'destroyCategory'])->name('categories.destroy');
@@ -127,7 +119,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/subgenres', [CategoryGenreController::class, 'storeSubgenre'])->name('subgenres.store');
         Route::delete('/subgenres/{id}', [CategoryGenreController::class, 'destroySubgenre'])->name('subgenres.destroy');
 
-        // Book
         Route::get('/books', [BookManageController::class, 'index'])->name('books.index');
         Route::get('/books/{id}', [BookManageController::class, 'show'])->name('books.show');
         Route::patch('/books/{id}/toggle', [BookManageController::class, 'toggleStatus'])->name('books.toggle');
