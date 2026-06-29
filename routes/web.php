@@ -55,7 +55,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             return redirect()->route('contributor.dashboard');
         }
 
-        return redirect()->route('user.dashboard');
+        return redirect()->route('home');
     })->name('dashboard');
 
 

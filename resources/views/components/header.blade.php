@@ -25,7 +25,8 @@
             </div>
 
             <div class="hidden md:flex flex-1 max-w-md px-8">
-                <div class="relative w-full group">
+                <form action="{{ route('explore.index') }}" method="GET" class="relative w-full group">
+
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg class="h-4 w-4 text-slate-400 group-focus-within:text-amber-500 transition-colors"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -33,9 +34,12 @@
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
-                    <input type="text" placeholder="Temukan cerita atau penulis..."
+
+                    <input type="text" name="search" value="{{ request('search') }}"
+                        placeholder="Temukan cerita atau penulis..."
                         class="block w-full pl-10 pr-3 py-2 border border-slate-200 rounded-full leading-5 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all sm:text-sm">
-                </div>
+
+                </form>
             </div>
 
             <div class="hidden md:flex items-center gap-5">
