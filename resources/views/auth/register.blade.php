@@ -56,7 +56,7 @@
                         <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
                             autocomplete="name"
                             class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-900 focus:bg-white focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all shadow-sm placeholder:text-slate-400"
-                            placeholder="Cth: Nabil">
+                            placeholder="Cth: Budiman">
                         <x-input-error :messages="$errors->get('name')" class="text-xs font-bold text-red-500 mt-1" />
                     </div>
 

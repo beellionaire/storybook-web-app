@@ -34,6 +34,23 @@ class CategoryGenreController extends Controller
         return back()->with('success', 'Kategori baru berhasil ditambahkan.');
     }
 
+    public function updateCategory(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'nullable|string|max:255',
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'icon' => $request->icon,
+        ]);
+
+        return back()->with('success', 'Kategori berhasil diperbarui!');
+    }
+
     public function destroyCategory($id)
     {
         Category::findOrFail($id)->delete();
@@ -51,6 +68,21 @@ class CategoryGenreController extends Controller
         ]);
 
         return back()->with('success', 'Genre baru berhasil ditambahkan.');
+    }
+
+    public function updateGenre(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $genre = Genre::findOrFail($id);
+        $genre->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+        ]);
+
+        return back()->with('success', 'Genre berhasil diperbarui!');
     }
 
     public function destroyGenre($id)

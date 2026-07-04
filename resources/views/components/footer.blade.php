@@ -4,11 +4,6 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-12">
 
             <div class="col-span-2 md:col-span-1">
-                {{-- <a href="/"
-                    class="text-3xl font-black text-slate-900 flex items-center gap-1.5 tracking-tight mb-4">
-                    Kita<span class="text-amber-500">Baca.</span>
-                </a> --}}
-
                 <a href="/">
                     <img src="{{ asset('images/logo.jpeg') }}" alt="logo" class="w-36 mb-3">
                 </a>
@@ -20,16 +15,16 @@
             <div>
                 <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5">Eksplorasi</h3>
                 <ul class="space-y-4">
-                    <li><a href="#"
+                    <li><a href="{{ route('books.index') }}"
                             class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Fiksi
                             Remaja</a></li>
-                    <li><a href="#"
+                    <li><a href="{{ route('books.index') }}"
                             class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Persahabatan</a>
                     </li>
-                    <li><a href="#"
+                    <li><a href="{{ route('books.index') }}"
                             class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Misteri
                             & Thriller</a></li>
-                    <li><a href="#"
+                    <li><a href="{{ route('books.index') }}"
                             class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Pilihan
                             Editor</a></li>
                 </ul>
@@ -38,28 +33,27 @@
             <div>
                 <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5">Untuk Penulis</h3>
                 <ul class="space-y-4">
+                    <li><a href="{{ route('contributor.stories.create') }}"
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">
+                            Mulai Menulis</a></li>
                     <li><a href="#"
-                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Pusat
-                            Bantuan Penulis</a></li>
-                    <li><a href="#"
-                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Panduan
-                            Format</a></li>
-                    <li><a href="#"
-                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Program
-                            Royalti</a></li>
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors"></a>
+                    </li>
+                    <li><a href="#" class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">
+                        </a></li>
                 </ul>
             </div>
 
             <div>
                 <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5">Perusahaan</h3>
                 <ul class="space-y-4">
-                    <li><a href="#"
+                    <li><a href="{{ route('about') }}"
                             class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Tentang
                             Kami</a></li>
-                    <li><a href="#"
+                    <li><a href="{{ route('privacy') }}"
                             class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Kebijakan
                             Privasi</a></li>
-                    <li><a href="#"
+                    <li><a href="{{ route('terms') }}"
                             class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Syarat &
                             Ketentuan</a></li>
                 </ul>

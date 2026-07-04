@@ -1,5 +1,5 @@
 <x-layouts.main>
-    <div class="min-h-screen bg-[#F8FAFC] pb-24 font-sans antialiased text-slate-800 selection:bg-amber-200 selection:text-amber-900"
+    <div class="min-h-screen bg-[#fffdf8] pb-24 font-sans antialiased text-slate-800 selection:bg-amber-200 selection:text-amber-900"
         x-data="{
             // Mengambil nilai filter dari URL (jika ada), atau gunakan default
             selectedGenre: '{{ request('genre', 'semua') }}',
@@ -78,7 +78,7 @@
         <div class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 
-                <aside
+                {{-- <aside
                     class="hidden lg:block lg:col-span-3 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-8 sticky top-6">
                     <div>
                         <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Status Cerita</h3>
@@ -111,7 +111,7 @@
                             <option value="rating">Rating Tertinggi</option>
                         </select>
                     </div>
-                </aside>
+                </aside> --}}
 
                 <main class="lg:col-span-9">
 

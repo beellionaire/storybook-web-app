@@ -212,7 +212,8 @@
                                 <div class="flex flex-col items-center justify-center text-slate-400">
                                     <i class="fa-solid fa-box-open text-4xl mb-3 opacity-50"></i>
                                     <p class="font-medium text-slate-500">Anda belum menulis cerita apapun.</p>
-                                    <a href="#" class="mt-4 text-orange-500 font-bold hover:underline">Mulai menulis
+                                    <a href="{{ route('contributor.stories.create') }}"
+                                        class="mt-4 text-orange-500 font-bold hover:underline">Mulai menulis
                                         sekarang!</a>
                                 </div>
                             </td>

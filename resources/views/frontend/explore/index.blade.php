@@ -1,5 +1,5 @@
 <x-layouts.main>
-    <div class="min-h-screen bg-[#F8FAFC] pb-24 font-sans antialiased text-slate-800" x-data="{
+    <div class="min-h-screen bg-[#fffdf8] pb-24 font-sans antialiased text-slate-800" x-data="{
              searchQuery: '',
 
              // 1. GRADIENT WARNA UNTUK KATEGORI
@@ -42,7 +42,7 @@
              }
          }">
 
-        <header class="bg-white border-b border-slate-200/80 pt-12 sm:pt-16 pb-12">
+        <header class="bg-[#fffbf2] border-b border-slate-200/80 pt-12 sm:pt-16 pb-12">
             <div class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-4">
                     Eksplorasi Dunia Baru

@@ -36,6 +36,18 @@ Route::get('/explore', [ExploreController::class, 'index'])->name('explore.index
 Route::get('/category/{slug}', [ExploreController::class, 'showCategory'])->name('explore.category');
 Route::get('/genre/{slug}', [ExploreController::class, 'showGenre'])->name('explore.genre');
 
+Route::get('/about', function () {
+    return view('frontend.pages.about');
+})->name('about');
+
+Route::get('/privacy', function () {
+    return view('frontend.pages.privacy');
+})->name('privacy');
+
+Route::get('/terms', function () {
+    return view('frontend.pages.terms');
+})->name('terms');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -118,6 +130,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/genres/{id}', [CategoryGenreController::class, 'destroyGenre'])->name('genres.destroy');
         Route::post('/subgenres', [CategoryGenreController::class, 'storeSubgenre'])->name('subgenres.store');
         Route::delete('/subgenres/{id}', [CategoryGenreController::class, 'destroySubgenre'])->name('subgenres.destroy');
+        Route::put('/categories/{id}', [CategoryGenreController::class, 'updateCategory'])->name('categories.update');
+        Route::put('/genres/{id}', [CategoryGenreController::class, 'updateGenre'])->name('genres.update');
 
         Route::get('/books', [BookManageController::class, 'index'])->name('books.index');
         Route::get('/books/{id}', [BookManageController::class, 'show'])->name('books.show');

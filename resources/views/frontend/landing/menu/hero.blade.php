@@ -32,7 +32,7 @@
 
         <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center justify-center transition-all duration-700 delay-300 ease-out"
             :class="mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'">
-            <a href="/browse"
+            <a href="{{ route('explore.index') }}"
                 class="font-balsamiq group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-slate-900 px-10 py-4 text-lg font-bold text-white transition-all duration-300 hover:scale-105 hover:bg-slate-800 hover:shadow-xl hover:shadow-slate-900/20 active:scale-95">
                 <span
                     class="absolute inset-0 h-full w-full rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span>
