@@ -1,19 +1,13 @@
 <header x-data="{ mobileMenuOpen: false, profileOpen: false, scrolled: false }"
     @scroll.window="scrolled = (window.pageYOffset > 10)"
     :class="{ 'bg-white/80 backdrop-blur-md shadow-sm border-gray-200': scrolled, 'bg-transparent border-transparent': !scrolled }"
-    class="fixed top-0 left-0 w-full z-[100] border-b transition-all duration-300">
+    class="fixed top-0 left-0 w-full z-50 border-b transition-all duration-300">
     <div class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20 transition-all duration-300" :class="{ 'h-16': scrolled }">
 
             <div class="flex items-center gap-8">
-                {{-- <a href="/"
-                    class="text-2xl font-black tracking-tight text-slate-900 transition-transform hover:scale-105">
-                    Kita<span class="text-amber-500">Baca.</span>
-                </a>
-                --}}
-
                 <a href="/">
-                    <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-40">
+                    <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-40 relative z-50">
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-6">
@@ -52,11 +46,12 @@
                     Mulai Menulis
                 </a>
 
-                <div class="w-px h-6 bg-slate-200"></div> @auth
+                <div class="w-px h-6 bg-slate-200"></div>
+
+                @auth
                 <a href="{{ route('library.index') }}"
                     class="relative p-2 text-slate-500 hover:text-slate-900 transition-colors rounded-full hover:bg-slate-100">
                     <i class="fa-regular fa-bookmark"></i>
-
                 </a>
 
                 <div class="relative">
@@ -78,6 +73,13 @@
                             <p class="text-sm font-semibold text-slate-900 truncate">{{ auth()->user()->name }}</p>
                             <p class="text-xs text-slate-500 truncate">{{ auth()->user()->email }}</p>
                         </div>
+
+                        <!-- Tombol Dashboard (Desktop) -->
+                        <a href="{{ route('dashboard') }}"
+                            class="block px-4 py-2 text-sm font-semibold text-amber-600 hover:bg-amber-50 transition-colors">
+                            <i class="fa-solid fa-gauge-high w-5 text-center mr-1"></i> Dashboard
+                        </a>
+
                         <a href="/profile"
                             class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-amber-600 transition-colors">Profil
                             Saya</a>
@@ -108,18 +110,21 @@
         </div>
     </div>
 
+    <!-- Area Menu Mobile -->
     <template x-teleport="body">
         <div>
+            <!-- Layer Gelap (Z-Index Ditinggikan agar menutupi Header) -->
             <div x-show="mobileMenuOpen" x-transition.opacity
-                class="fixed inset-0 bg-slate-900/40 z-40 md:hidden backdrop-blur-sm" @click="mobileMenuOpen = false"
+                class="fixed inset-0 bg-slate-900/40 z-[100] md:hidden backdrop-blur-sm" @click="mobileMenuOpen = false"
                 style="display: none;">
             </div>
 
+            <!-- Panel Sidebar Mobile (Z-Index Ditinggikan menjadi 110) -->
             <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300 transform"
                 x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
                 x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="translate-x-0"
                 x-transition:leave-end="translate-x-full"
-                class="fixed inset-y-0 right-0 z-50 w-full max-w-xs bg-white shadow-2xl flex flex-col md:hidden"
+                class="fixed inset-y-0 right-0 z-[110] w-full max-w-xs bg-white shadow-2xl flex flex-col md:hidden"
                 style="display: none;">
 
                 <div class="px-6 py-5 flex items-center justify-between border-b border-slate-100">
@@ -140,13 +145,13 @@
                     </div>
 
                     <nav class="flex flex-col gap-4">
-                        <a href="/browse"
+                        <a href="{{ route('explore.index') }}"
                             class="text-base font-medium text-slate-600 hover:text-amber-500 flex items-center justify-between">Eksplorasi
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 5l7 7-7 7" />
                             </svg></a>
-                        <a href="/write"
+                        <a href="{{ route('contributor.stories.create') }}"
                             class="text-base font-medium text-slate-600 hover:text-amber-500 flex items-center justify-between">Mulai
                             Menulis <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -157,14 +162,21 @@
 
                 <div class="p-6 border-t border-slate-100 bg-slate-50">
                     @auth
-                    <a href="/profile" class="flex items-center gap-3 mb-4">
-                        <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}"
+                    <a href="/profile" class="flex items-center gap-3 mb-6">
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=f59e0b&color=fff"
                             class="w-10 h-10 rounded-full" alt="User">
                         <div>
                             <p class="text-sm font-semibold text-slate-900">{{ auth()->user()->name }}</p>
                             <p class="text-xs text-slate-500">Lihat Profil</p>
                         </div>
                     </a>
+
+                    <!-- Tombol Dashboard (Mobile) -->
+                    <a href="{{ route('dashboard') }}"
+                        class="block w-full py-3 px-4 mb-3 bg-amber-500 text-white text-center rounded-xl text-sm font-semibold hover:bg-amber-600 shadow-md shadow-amber-500/20 transition-all">
+                        Masuk Dashboard
+                    </a>
+
                     <form method="POST" action="/logout">
                         @csrf
                         <button type="submit"

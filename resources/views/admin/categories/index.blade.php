@@ -99,8 +99,7 @@
                     <p class="text-xs text-slate-400 font-semibold mb-4">Slug: {{ $category->slug }}</p>
 
                     <!-- Action Buttons (Edit & Delete) -->
-                    <div
-                        class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+                    <div class="absolute top-6 right-6 flex items-center gap-2">
                         <!-- Edit Button -->
                         <button
                             @click="openEditCategory({ id: '{{ $category->id }}', name: '{{ addslashes($category->name) }}', icon: '{{ addslashes($category->icon ?? '') }}' })"
@@ -113,7 +112,7 @@
 
                         <!-- Delete Button (Trigger Modal) -->
                         <button
-                            @click="openDeleteModal('{{ route('admin.categories.destroy', $category->id) }}', 'Anda yakin ingin menghapus kategori {{ $category->name }}?')"
+                            @click="openDeleteModal('{{ route('admin.categories.destroy', $category->id) }}', 'Anda yakin ingin menghapus kategori {{ addslashes($category->name) }}?')"
                             class="w-8 h-8 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center hover:bg-rose-500 hover:text-white transition-colors">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -165,7 +164,7 @@
                                         {{ $sub->name }}
                                         <!-- Trigger Modal Delete Subgenre -->
                                         <button type="button"
-                                            @click="openDeleteModal('{{ route('admin.subgenres.destroy', $sub->id) }}', 'Yakin ingin menghapus subgenre {{ $sub->name }}?')"
+                                            @click="openDeleteModal('{{ route('admin.subgenres.destroy', $sub->id) }}', 'Yakin ingin menghapus subgenre {{ addslashes($sub->name) }}?')"
                                             class="text-slate-400 hover:text-rose-500 transition-colors focus:outline-none">
                                             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"
                                                 stroke="currentColor">
@@ -189,8 +188,7 @@
 
                             <td class="px-6 lg:px-8 py-5 text-right align-top">
                                 <!-- Action Buttons -->
-                                <div
-                                    class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="flex items-center justify-end gap-2">
 
                                     <!-- Edit Genre Button -->
                                     <button
@@ -204,7 +202,7 @@
 
                                     <!-- Delete Genre Button (Trigger Modal) -->
                                     <button
-                                        @click="openDeleteModal('{{ route('admin.genres.destroy', $genre->id) }}', 'Yakin menghapus Genre {{ $genre->name }} beserta semua subgenrenya?')"
+                                        @click="openDeleteModal('{{ route('admin.genres.destroy', $genre->id) }}', 'Yakin menghapus Genre {{ addslashes($genre->name) }} beserta semua subgenrenya?')"
                                         class="text-rose-500 hover:text-white bg-rose-50 hover:bg-rose-500 p-2 rounded-xl transition-colors focus:outline-none">
                                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -233,8 +231,6 @@
         @include('admin.categories.partials.delete-modal')
         @include('admin.categories.partials.edit-category-modal')
         @include('admin.categories.partials.edit-genre-modal')
-
-
 
     </div>
 </x-app-layout>
