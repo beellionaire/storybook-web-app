@@ -76,8 +76,8 @@
 
                         <!-- Tombol Dashboard (Desktop) -->
                         <a href="{{ route('dashboard') }}"
-                            class="block px-4 py-2 text-sm font-semibold text-amber-600 hover:bg-amber-50 transition-colors">
-                            <i class="fa-solid fa-gauge-high w-5 text-center mr-1"></i> Dashboard
+                            class="block px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50 hover:text-amber-600 transition-colors">
+                            Dashboard
                         </a>
 
                         <a href="/profile"

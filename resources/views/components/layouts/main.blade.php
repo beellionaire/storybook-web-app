@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>{{ $title ?? 'StoryHub - Platform Membaca Interaktif' }}</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}?v=2">
+    <title>KitaBaca - Platform Membaca Interaktif</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 

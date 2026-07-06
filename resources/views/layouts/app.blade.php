@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}?v=2">
 
-    <title>{{ config('app.name', 'StoryHub') }} - Dashboard</title>
+    <title>KitaBaca - Platform Membaca Interaktif</title>
+
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=balsamiq-sans:400,700|quicksand:400,500,600,700&display=swap"
