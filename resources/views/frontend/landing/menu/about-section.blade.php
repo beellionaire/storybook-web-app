@@ -27,7 +27,7 @@
                 </h2>
 
                 <a href="/">
-                    <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-48">
+                    <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-48" loading="lazy">
                 </a>
             </div>
 
@@ -43,7 +43,7 @@
             <div class="relative group mt-8 md:mt-0">
                 <div
                     class="absolute -top-32 left-1/2 w-96 -translate-x-1/2 drop-shadow-xl transition-transform duration-500 group-hover:-translate-y-3 z-10">
-                    <img src="{{ asset('images/magicbook.png') }}" alt="Roket"
+                    <img src="{{ asset('images/magicbook.webp') }}" alt="Roket" loading="lazy"
                         class="w-full h-auto animate-[float_4s_ease-in-out_infinite]">
                 </div>
                 <div
@@ -59,7 +59,7 @@
             <div class="relative group mt-12 md:mt-0 lg:-mt-8">
                 <div
                     class="absolute -top-32 left-1/2 w-96 -translate-x-1/2 drop-shadow-xl transition-transform duration-500 group-hover:-translate-y-3 z-10">
-                    <img src="{{ asset('images/trophy.png') }}" alt="Piala"
+                    <img src="{{ asset('images/trophy.webp') }}" alt="Piala" loading="lazy"
                         class="w-full h-auto animate-[float_5s_ease-in-out_infinite]">
                 </div>
                 <div
@@ -75,7 +75,7 @@
             <div class="relative group mt-12 md:mt-0">
                 <div
                     class="absolute -top-32 left-1/2 w-96 -translate-x-1/2 drop-shadow-xl transition-transform duration-500 group-hover:-translate-y-3 z-10">
-                    <img src="{{ asset('images/giftbox.png') }}" alt="Kado"
+                    <img src="{{ asset('images/giftbox.webp') }}" alt="Kado" loading="lazy"
                         class="w-full h-auto animate-[float_4.5s_ease-in-out_infinite]">
                 </div>
                 <div

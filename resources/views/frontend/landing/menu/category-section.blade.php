@@ -2,7 +2,7 @@
 
 <section class="py-20 lg:py-28 bg-[#fff] relative font-sans overflow-hidden isolate">
 
-    <img src="{{ asset('images/left-genre-deco.jpeg') }}" alt="Dekorasi Kiri"
+    <img src="{{ asset('images/left-genre-deco.webp') }}" alt="Dekorasi Kiri" loading="lazy"
         class="hidden md:block absolute -left-[370px] top-[410px] w-[500px] sm:w-48 lg:w-[800px] -translate-x-1/4 -z-10 pointer-events-none opacity-70 lg:opacity-100 animate-[float_6s_ease-in-out_infinite]">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -90,7 +90,8 @@
                     $iconClass = !empty(trim($category->icon)) ? trim($category->icon) : 'fa-solid fa-book';
                     @endphp
 
-                    <i class="{{ $iconClass }} text-3xl sm:text-4xl {{ $theme['count'] }} group-hover:scale-110 transition-transform"></i>
+                    <i
+                        class="{{ $iconClass }} text-3xl sm:text-4xl {{ $theme['count'] }} group-hover:scale-110 transition-transform"></i>
 
                 </div>
 
