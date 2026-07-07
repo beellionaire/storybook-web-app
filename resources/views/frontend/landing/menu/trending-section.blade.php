@@ -42,7 +42,7 @@
 
                 <div class="relative aspect-[2/3] rounded-2xl overflow-hidden mb-4 bg-slate-100">
                     @if($book->cover_image)
-                    <img src="{{ asset('storage/' . $book->cover_image) }}"
+                    <img src="{{ asset('storage/' . $book->cover_image) }}" width="160" height="40"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         alt="Cover Buku">
                     @else

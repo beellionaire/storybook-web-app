@@ -24,7 +24,8 @@
                         <div
                             class="w-[200px] sm:w-[240px] aspect-[2/3] rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(15,23,42,0.1)] ring-1 ring-slate-900/5 relative bg-slate-100">
                             @if($book->cover_image)
-                            <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Kover Cerita"
+                            <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Kover Cerita" width="160"
+                                height="40"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             @else
                             <div class="w-full h-full flex items-center justify-center text-slate-300">
@@ -125,7 +126,7 @@
 
                                 </button>
                             </form>
-                            
+
                             @else
                             <a href="{{ route('login') }}"
                                 class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-all shadow-md active:scale-95">
@@ -286,7 +287,8 @@
                             <a href="{{ route('books.story', $sim->slug) }}" class="flex gap-4 group">
                                 <div class="w-14 aspect-[2/3] rounded-md overflow-hidden bg-slate-100 shrink-0">
                                     @if($sim->cover_image)
-                                    <img src="{{ asset('storage/' . $sim->cover_image) }}" alt="Cover"
+                                    <img src="{{ asset('storage/' . $sim->cover_image) }}" alt="Cover" width="160"
+                                        height="40"
                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform">
                                     @else
                                     <div class="w-full h-full bg-slate-200"></div>

@@ -85,7 +85,7 @@
                                 <div class="flex items-center gap-4">
                                     <div class="w-10 h-14 rounded-lg bg-slate-100 overflow-hidden shadow-sm shrink-0">
                                         @if($book->cover_image)
-                                        <img src="{{ asset('storage/' . $book->cover_image) }}"
+                                        <img src="{{ asset('storage/' . $book->cover_image) }}" width="160" height="40"
                                             class="w-full h-full object-cover">
                                         @else
                                         <div

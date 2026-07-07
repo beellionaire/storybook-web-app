@@ -135,7 +135,7 @@
                                 class="w-full aspect-[2/3] rounded-xl overflow-hidden bg-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-slate-200/60 relative mb-3">
 
                                 @if($book->cover_image)
-                                <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Cover {{ $book->title }}"
+                                <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Cover {{ $book->title }}" width="160" height="40"
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                                 @else
                                 <div

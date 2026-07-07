@@ -3,7 +3,7 @@
         class="fixed inset-0 z-50 flex flex-col lg:flex-row bg-white font-sans text-slate-800 selection:bg-amber-200 selection:text-amber-900">
 
         <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-            <img src="{{ asset('images/bg-auth.webp') }}" alt="Membaca Novel"
+            <img src="{{ asset('images/bg-auth.webp') }}" alt="Membaca Novel" width="160" height="40"
                 class="absolute inset-0 w-full h-full object-cover  hover:scale-105 transition-transform duration-[20s] ease-out">
 
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent"></div>
@@ -11,7 +11,8 @@
             <div class="relative z-10 p-12 lg:p-16 flex flex-col justify-between h-full w-full">
                 <div>
                     <a href="/">
-                        <img src="{{ asset('images/logo-horizontal-2.webp') }}" alt="logo" class="w-40">
+                        <img src="{{ asset('images/logo-horizontal-2.webp') }}" alt="logo" class="w-40" width="160"
+                            height="40">
                     </a>
                 </div>
 
@@ -37,7 +38,8 @@
 
                 <div class="lg:hidden mb-10 text-center flex justify-center">
                     <a href="/">
-                        <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-40">
+                        <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-40" width="160"
+                            height="40">
                     </a>
                 </div>
 

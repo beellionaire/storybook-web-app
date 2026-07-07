@@ -84,7 +84,7 @@
                     @if(!empty($page['image']))
                     <figure
                         class="mb-10 mt-4 relative group rounded-2xl overflow-hidden shadow-lg border border-slate-200/50">
-                        <img src="{{ $page['image'] }}" alt="Ilustrasi Bab"
+                        <img src="{{ $page['image'] }}" alt="Ilustrasi Bab" width="160" height="40"
                             class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700">
                     </figure>
                     @endif

@@ -7,7 +7,8 @@
 
             <div class="flex items-center gap-8">
                 <a href="/">
-                    <img src="{{ asset('images/logo-horizontal-2.webp') }}" alt="logo" class="w-40 relative z-50">
+                    <img src="{{ asset('images/logo-horizontal-2.webp') }}" alt="logo" class="w-40 relative z-50"
+                        width="160" height="40">
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-6">
@@ -58,7 +59,7 @@
                     <button @click="profileOpen = !profileOpen" @click.away="profileOpen = false"
                         class="flex items-center focus:outline-none overflow-hidden rounded-full ring-2 ring-transparent hover:ring-amber-500/50 transition-all">
                         <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=f59e0b&color=fff"
-                            class="w-9 h-9 object-cover" alt="User">
+                            class="w-9 h-9 object-cover" alt="User" width="160" height="40">
                     </button>
 
                     <div x-show="profileOpen" x-transition:enter="transition ease-out duration-200"
@@ -164,7 +165,7 @@
                     @auth
                     <a href="/profile" class="flex items-center gap-3 mb-6">
                         <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=f59e0b&color=fff"
-                            class="w-10 h-10 rounded-full" alt="User">
+                            class="w-10 h-10 rounded-full" alt="User" width="160" height="40">
                         <div>
                             <p class="text-sm font-semibold text-slate-900">{{ auth()->user()->name }}</p>
                             <p class="text-xs text-slate-500">Lihat Profil</p>

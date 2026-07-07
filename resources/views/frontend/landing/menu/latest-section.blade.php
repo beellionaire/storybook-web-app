@@ -42,7 +42,7 @@
 
                 <div
                     class="relative w-full sm:w-40 h-56 sm:h-auto shrink-0 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
-                    <img src="https://images.unsplash.com/photo-1629196914275-f1545bb8ba68?q=80&w=400&auto=format&fit=crop"
+                    <img src="https://images.unsplash.com/photo-1629196914275-f1545bb8ba68?q=80&w=400&auto=format&fit=crop" width="160" height="40"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         alt="Cover">
                 </div>
@@ -91,7 +91,7 @@
 
                 <div
                     class="relative w-full sm:w-40 h-56 sm:h-auto shrink-0 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
-                    <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=400&auto=format&fit=crop"
+                    <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=400&auto=format&fit=crop" width="160" height="40"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         alt="Cover">
                 </div>
@@ -139,7 +139,7 @@
 
                 <div
                     class="relative w-full sm:w-40 h-56 sm:h-auto shrink-0 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
-                    <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=400&auto=format&fit=crop"
+                    <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=400&auto=format&fit=crop" width="160" height="40"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         alt="Cover">
                 </div>
@@ -188,7 +188,7 @@
 
                 <div
                     class="relative w-full sm:w-40 h-56 sm:h-auto shrink-0 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
-                    <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=400&auto=format&fit=crop"
+                    <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=400&auto=format&fit=crop" width="160" height="40"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         alt="Cover">
                 </div>

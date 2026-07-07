@@ -45,7 +45,7 @@
                     class="bg-white rounded-[2rem] p-4 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden group">
                     <div class="aspect-[2/3] rounded-2xl bg-slate-100 overflow-hidden relative shadow-inner">
                         @if($book->cover_image)
-                        <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Cover"
+                        <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Cover" width="160" height="40"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         @else
                         <div class="w-full h-full flex flex-col items-center justify-center text-slate-300 gap-3">
@@ -112,7 +112,7 @@
                     class="bg-white rounded-[2rem] p-6 lg:p-8 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
                     <div class="flex items-center gap-4 mb-6 pb-6 border-b border-slate-100">
                         <img src="https://ui-avatars.com/api/?name={{ urlencode($book->author->name) }}&background=f97316&color=fff"
-                            class="w-12 h-12 rounded-full shadow-sm ring-4 ring-slate-50">
+                            width="160" height="40" class="w-12 h-12 rounded-full shadow-sm ring-4 ring-slate-50">
                         <div>
                             <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-0.5">Penulis Cerita
                             </p>

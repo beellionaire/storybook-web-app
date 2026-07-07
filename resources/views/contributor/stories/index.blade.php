@@ -115,7 +115,7 @@
                                     <div
                                         class="w-14 h-20 rounded-xl bg-slate-100 overflow-hidden shadow-sm shrink-0 border border-slate-200/50">
                                         @if($book->cover_image)
-                                        <img src="{{ asset('storage/' . $book->cover_image) }}"
+                                        <img src="{{ asset('storage/' . $book->cover_image) }}" width="160" height="40"
                                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                         @else
                                         <div class="w-full h-full flex items-center justify-center text-slate-300">

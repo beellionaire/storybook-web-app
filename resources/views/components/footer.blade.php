@@ -5,7 +5,7 @@
 
             <div class="col-span-2 md:col-span-1">
                 <a href="/">
-                    <img src="{{ asset('images/logo.webp') }}" alt="logo" class="w-36 mb-3">
+                    <img src="{{ asset('images/logo.webp') }}" alt="logo" class="w-36 mb-3" width="160" height="40">
                 </a>
                 <p class="text-xs font-medium text-slate-500 leading-relaxed max-w-xs">
                     Platform membaca interaktif generasi baru. Temukan duniamu, satu halaman setiap kalinya.

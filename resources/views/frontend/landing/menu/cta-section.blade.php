@@ -48,8 +48,8 @@
             <div class="w-full md:w-2/5 mt-16 md:mt-0 flex justify-center md:justify-end relative z-10">
                 <div
                     class="w-72 sm:w-80 md:w-96 lg:w-[48rem] relative right-0 lg:-right-8 animate-[float_4s_ease-in-out_infinite] scale-125 lg:scale-150 origin-center md:origin-right">
-                    <img src="{{ asset('/images/childpencil.webp') }}" alt="Penulis Cilik" loading="lazy"
-                        class="w-full h-auto object-contain drop-shadow-2xl">
+                    <img src="{{ asset('/images/childpencil.webp') }}" alt="Penulis Cilik" loading="lazy" width="160"
+                        height="40" class="w-full h-auto object-contain drop-shadow-2xl">
                 </div>
             </div>
 

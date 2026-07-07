@@ -2,7 +2,7 @@
 
 <section class="py-20 lg:py-28 bg-[#fff] relative font-sans overflow-hidden isolate">
 
-    <img src="{{ asset('images/left-genre-deco.webp') }}" alt="Dekorasi Kiri" loading="lazy"
+    <img src="{{ asset('images/left-genre-deco.webp') }}" alt="Dekorasi Kiri" loading="lazy" width="160" height="40"
         class="hidden md:block absolute -left-[370px] top-[410px] w-[500px] sm:w-48 lg:w-[800px] -translate-x-1/4 -z-10 pointer-events-none opacity-70 lg:opacity-100 animate-[float_6s_ease-in-out_infinite]">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
