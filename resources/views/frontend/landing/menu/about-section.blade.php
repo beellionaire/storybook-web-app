@@ -27,7 +27,7 @@
                 </h2>
 
                 <a href="/">
-                    <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-48" loading="lazy">
+                    <img src="{{ asset('images/logo-horizontal-2.webp') }}" alt="logo" class="w-48" loading="lazy">
                 </a>
             </div>
 

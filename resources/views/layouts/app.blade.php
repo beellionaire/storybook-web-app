@@ -8,6 +8,8 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}?v=2">
 
     <title>KitaBaca - Platform Membaca Interaktif</title>
+    <meta name="description"
+        content="KitaBaca adalah platform tempat Anda bisa membaca, menulis, dan mengeksplorasi berbagai cerita menarik dari para kontributor berbakat.">
 
 
     <link rel="preconnect" href="https://fonts.bunny.net">

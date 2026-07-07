@@ -7,7 +7,7 @@
 
             <div class="flex items-center gap-8">
                 <a href="/">
-                    <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-40 relative z-50">
+                    <img src="{{ asset('images/logo-horizontal-2.webp') }}" alt="logo" class="w-40 relative z-50">
                 </a>
 
                 <nav class="hidden lg:flex items-center gap-6">

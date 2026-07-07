@@ -6,7 +6,7 @@
 
     <div class="flex items-center h-20 px-8 shrink-0 border-b border-slate-50 justify-center">
         <a href="/">
-            <img src="{{ asset('images/logo-horizontal-2.png') }}" alt="logo" class="w-44">
+            <img src="{{ asset('images/logo-horizontal-2.webp') }}" alt="logo" class="w-44">
         </a>
     </div>
 

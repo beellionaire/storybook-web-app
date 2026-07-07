@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}?v=2">
     <title>KitaBaca - Platform Membaca Interaktif</title>
+    <meta name="description"
+        content="KitaBaca adalah platform tempat Anda bisa membaca, menulis, dan mengeksplorasi berbagai cerita menarik dari para kontributor berbakat.">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
