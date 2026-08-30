@@ -9,12 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ContributorApplyController extends Controller
 {
-    // Menampilkan halaman form pengajuan
     public function create()
     {
         $user = Auth::user();
 
-        // Cek jika user sudah menjadi kontributor, alihkan ke dashboard
         if ($user->role === 'contributor' || $user->role === 'admin') {
             return redirect()->route('contributor.dashboard');
         }
@@ -26,7 +24,7 @@ class ContributorApplyController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'age' => 'required|numeric|min:13', // Misal minimal usia 13 tahun
+            'age' => 'required|numeric|min:13',
             'address' => 'required|string',
             'reason' => 'required|string',
             'terms' => 'accepted'
@@ -34,7 +32,6 @@ class ContributorApplyController extends Controller
 
         $user = Auth::user();
 
-        // Cek apakah sudah pernah mengajukan dan masih pending
         $existingRequest = ContributorRequest::where('user_id', $user->id)->where('status', 'pending')->first();
         if ($existingRequest) {
             return back()->withErrors(['reason' => 'Anda sudah memiliki pengajuan yang sedang menunggu persetujuan admin.']);

@@ -43,7 +43,6 @@ class ChapterController extends Controller
                 $imageUrl = asset('storage/' . $imagePath);
             }
 
-            // Menyimpan format rapi ke dalam array
             $structuredPages[] = [
                 'image' => $imageUrl,
                 'text' => $page['text']
@@ -57,7 +56,7 @@ class ChapterController extends Controller
             'book_id' => $book->id,
             'chapter_number' => $request->chapter_number,
             'title' => $request->title,
-            'content' => $structuredPages, // Simpan sebagai array
+            'content' => $structuredPages,
             'visual_image' => null,
             'status' => $status,
         ]);
@@ -71,7 +70,6 @@ class ChapterController extends Controller
             ->with('success', 'Bab "' . $request->title . '" berhasil disimpan!');
     }
 
-    // Menampilkan form edit
     public function edit($book_id, $chapter_id)
     {
         $book = Book::where('author_id', Auth::id())->findOrFail($book_id);
@@ -79,7 +77,6 @@ class ChapterController extends Controller
 
         $pages = [];
 
-        // Membaca array langsung dari database tanpa perlu regex/explode
         $contentData = is_array($chapter->content) ? $chapter->content : json_decode($chapter->content, true);
 
         if ($contentData && is_array($contentData)) {
@@ -97,7 +94,6 @@ class ChapterController extends Controller
         return view('contributor.chapters.edit', compact('book', 'chapter', 'pages'));
     }
 
-    // Memperbarui bab
     public function update(Request $request, $book_id, $chapter_id)
     {
         $book = Book::where('author_id', Auth::id())->findOrFail($book_id);
@@ -116,15 +112,12 @@ class ChapterController extends Controller
         foreach ($request->pages as $page) {
             $imageUrl = $page['old_image'] ?? null;
 
-            // Jika ada gambar baru yang diunggah untuk menggantikan gambar lama
             if (isset($page['image'])) {
-                // 1. Hapus gambar lama di storage server jika ada
                 if ($imageUrl) {
                     $oldPath = Str::after($imageUrl, 'storage/');
                     Storage::disk('public')->delete($oldPath);
                 }
 
-                // 2. Simpan gambar baru
                 $imagePath = $page['image']->store('chapters', 'public');
                 $imageUrl = asset('storage/' . $imagePath);
             }
@@ -138,7 +131,7 @@ class ChapterController extends Controller
         $chapter->update([
             'title' => $request->title,
             'chapter_number' => $request->chapter_number,
-            'content' => $structuredPages, // Perbarui array
+            'content' => $structuredPages, 
             'status' => $request->action === 'publish' ? 'published' : 'draft',
         ]);
 
@@ -146,13 +139,11 @@ class ChapterController extends Controller
             ->with('success', 'Bab berhasil diperbarui!');
     }
 
-    // Menghapus bab cerita
     public function destroy($book_id, $chapter_id)
     {
         $book = Book::where('author_id', Auth::id())->findOrFail($book_id);
         $chapter = Chapter::where('book_id', $book->id)->findOrFail($chapter_id);
 
-        // Bersihkan semua file gambar yang terkait dengan bab ini sebelum dihapus
         $contentData = is_array($chapter->content) ? $chapter->content : json_decode($chapter->content, true);
         if ($contentData && is_array($contentData)) {
             foreach ($contentData as $pageData) {

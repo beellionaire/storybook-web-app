@@ -15,10 +15,8 @@ class LibraryController extends Controller
     {
         $user = Auth::user();
 
-        // 1. Daftar Simpanan (Watchlist)
         $watchlists = Watchlist::with('book.author')->where('user_id', $user->id)->latest()->get();
 
-        // 2 & 3. Sedang Dibaca & Riwayat (Diambil dari tabel yang sama)
         $progresses = ReadingProgress::with(['book.author', 'book.chapters', 'chapter'])
             ->where('user_id', $user->id)
             ->orderBy('updated_at', 'desc')
@@ -27,7 +25,6 @@ class LibraryController extends Controller
         return view('frontend.library.index', compact('watchlists', 'progresses'));
     }
 
-    // Fungsi untuk menambah/menghapus dari Watchlist
     public function toggleWatchlist(Book $book)
     {
         $user = Auth::user();

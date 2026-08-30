@@ -15,6 +15,8 @@ class Book extends Model
         'slug',
         'description',
         'cover_image',
+        'document_path',
+        'pdf_path',
         'language',
         'story_type',
         'copyright',

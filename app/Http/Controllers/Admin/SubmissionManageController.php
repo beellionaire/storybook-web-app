@@ -8,13 +8,10 @@ use Illuminate\Http\Request;
 
 class SubmissionManageController extends Controller
 {
-    // 1. Menampilkan Halaman Persetujuan Penulis
     public function index(Request $request)
     {
-        // Mengambil data pengajuan beserta relasi user-nya
         $query = ContributorRequest::with('user')->latest();
 
-        // Fitur Pencarian (berdasarkan nama pendaftar atau email akun)
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
@@ -25,7 +22,6 @@ class SubmissionManageController extends Controller
             });
         }
 
-        // Fitur Filter Status (pending, approved, rejected)
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
@@ -35,17 +31,13 @@ class SubmissionManageController extends Controller
         return view('admin.submissions.index', compact('submissions'));
     }
 
-    // 2. Menyetujui Pendaftaran (Approve)
     public function approve($id)
     {
         $submission = ContributorRequest::findOrFail($id);
 
-        // Ubah status pengajuan menjadi disetujui
         $submission->status = 'approved';
         $submission->save();
 
-        // Ubah role pengguna di tabel users menjadi 'contributor'
-        // (Pastikan tidak mengubah role Admin jika kebetulan Admin yang mendaftar)
         if ($submission->user->role !== 'admin') {
             $submission->user->role = 'contributor';
             $submission->user->save();
@@ -58,12 +50,10 @@ class SubmissionManageController extends Controller
     {
         $submission = ContributorRequest::findOrFail($id);
 
-        // Ubah status menjadi ditolak
         $submission->status = 'rejected';
 
         $submission->save();
 
-        // Kembalikan role ke user biasa jika sebelumnya sempat disetujui lalu dibatalkan
         if ($submission->user->role === 'contributor') {
             $submission->user->role = 'user';
             $submission->user->save();

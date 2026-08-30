@@ -15,11 +15,22 @@
                     Anda.</p>
             </div>
 
-            <a href="{{ route('contributor.stories.create') }}"
-                class="inline-flex items-center justify-center gap-2 bg-gradient-to-tr from-amber-500 to-orange-500 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-[0_8px_20px_rgb(249,115,22,0.3)] hover:-translate-y-0.5 transition-all">
-                <i class="fa-solid fa-pen-nib"></i>
-                Tulis Cerita Baru
-            </a>
+            <!-- Kumpulan Tombol Aksi -->
+            <div class="flex flex-col sm:flex-row gap-3">
+                <!-- Tombol Upload Naskah (PDF/DOCX) -->
+                <a href="{{ route('contributor.stories.upload') }}"
+                    class="inline-flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 px-6 py-2.5 rounded-xl text-sm font-bold shadow-sm hover:bg-slate-50 hover:-translate-y-0.5 transition-all">
+                    <i class="fa-solid fa-file-arrow-up text-blue-600"></i>
+                    Upload Naskah
+                </a>
+
+                <!-- Tombol Tulis Cerita (Manual) -->
+                <a href="{{ route('contributor.stories.create') }}"
+                    class="inline-flex items-center justify-center gap-2 bg-gradient-to-tr from-amber-500 to-orange-500 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-[0_8px_20px_rgb(249,115,22,0.3)] hover:-translate-y-0.5 transition-all">
+                    <i class="fa-solid fa-pen-nib"></i>
+                    Tulis Manual
+                </a>
+            </div>
         </div>
 
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10">

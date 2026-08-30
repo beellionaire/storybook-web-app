@@ -13,7 +13,6 @@ class BookManageController extends Controller
     {
         $query = Book::with(['author', 'category', 'chapters'])->latest();
 
-        // Pencarian berdasarkan Judul atau Penulis
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
@@ -24,12 +23,10 @@ class BookManageController extends Controller
             });
         }
 
-        // Filter berdasarkan Kategori
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
 
-        // Filter berdasarkan Status
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
@@ -37,7 +34,6 @@ class BookManageController extends Controller
         $books = $query->paginate(10)->withQueryString();
         $categories = Category::all();
 
-        // Statistik Ringkas
         $stats = [
             'total' => Book::count(),
             'published' => Book::where('status', 'published')->count(),
@@ -50,13 +46,11 @@ class BookManageController extends Controller
 
     public function show($id)
     {
-        // Ambil data buku beserta relasinya
         $book = Book::with(['author', 'category', 'chapters', 'genres'])->findOrFail($id);
 
         return view('admin.books.show', compact('book'));
     }
 
-    // Mengubah status buku (Draft <-> Published)
     public function toggleStatus($id)
     {
         $book = Book::findOrFail($id);
@@ -66,7 +60,6 @@ class BookManageController extends Controller
         return back()->with('success', 'Status buku "' . $book->title . '" berhasil diubah.');
     }
 
-    // Menghapus buku
     public function destroy($id)
     {
         $book = Book::findOrFail($id);

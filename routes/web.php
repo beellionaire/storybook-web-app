@@ -91,6 +91,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['role:contributor,admin'])->prefix('contributor')->name('contributor.')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+        Route::get('/stories/upload', [StoryController::class, 'upload'])->name('stories.upload');
+        Route::post('/stories/upload', [StoryController::class, 'storeUpload'])->name('stories.storeUpload');
         Route::get('/stories', [StoryController::class, 'index'])->name('stories.index');
         Route::get('/stories/create', [StoryController::class, 'create'])->name('stories.create');
         Route::post('/stories', [StoryController::class, 'store'])->name('stories.store');

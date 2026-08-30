@@ -81,17 +81,32 @@
                             </div>
                             <div class="w-px h-8 bg-slate-200"></div>
                             <div class="text-center md:text-left">
+                                <!-- Kondisional Tampilan Format / Bab -->
+                                @if($book->pdf_path)
+                                <div class="text-xl sm:text-2xl font-black text-slate-900">PDF</div>
+                                <div class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">Format
+                                </div>
+                                @else
                                 <div class="text-xl sm:text-2xl font-black text-slate-900">{{ $book->chapters->count()
                                     }}</div>
                                 <div class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">Bab
                                 </div>
+                                @endif
                             </div>
                         </div>
 
                         <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto mt-auto">
-                            @php $firstChapter = $book->chapters->first(); @endphp
 
                             @auth
+                            <!-- Kondisional Tombol PDF vs Bab -->
+                            @if($book->pdf_path)
+                            <a href="{{ asset('storage/' . $book->pdf_path) }}" target="_blank"
+                                class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-all shadow-md active:scale-95">
+                                Lihat Cerita (PDF)
+                                <i class="fa-solid fa-file-pdf"></i>
+                            </a>
+                            @else
+                            @php $firstChapter = $book->chapters->first(); @endphp
                             @if($firstChapter)
                             <a href="{{ route('books.read', ['book_slug' => $book->slug, 'chapter_number' => $firstChapter->chapter_number]) }}"
                                 class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-all shadow-md active:scale-95">
@@ -106,6 +121,7 @@
                                 class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-slate-200 text-slate-500 px-8 py-3.5 rounded-xl font-bold text-sm cursor-not-allowed">
                                 Belum Ada Bab
                             </button>
+                            @endif
                             @endif
 
                             @php
@@ -148,27 +164,35 @@
         <div class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 mt-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
 
-                <div class="lg:col-span-8">
+                <!-- BAGIAN KIRI (SINOPSIS & BAB) - DENGAN min-w-0 -->
+                <div class="lg:col-span-8 min-w-0">
                     <div class="flex items-center gap-8 border-b border-slate-200 mb-8 overflow-x-auto no-scrollbar">
                         <button @click="activeTab = 'summary'"
                             class="pb-4 text-sm font-bold uppercase tracking-wider relative transition-colors whitespace-nowrap"
                             :class="activeTab === 'summary' ? 'text-slate-900' : 'text-slate-400 hover:text-slate-600'">
                             Sinopsis
-                            <div x-show="activeTab === 'summary'" x-transition
+                            <!-- Hapus x-transition di sini -->
+                            <div x-show="activeTab === 'summary'"
                                 class="absolute bottom-[-1px] left-0 w-full h-[2px] bg-slate-900 rounded-t-full"></div>
                         </button>
+
+                        <!-- Sembunyikan Tab Daftar Bab Jika PDF -->
+                        @if(!$book->pdf_path)
                         <button @click="activeTab = 'chapters'"
                             class="pb-4 text-sm font-bold uppercase tracking-wider relative transition-colors whitespace-nowrap flex items-center gap-2"
                             :class="activeTab === 'chapters' ? 'text-slate-900' : 'text-slate-400 hover:text-slate-600'">
                             Daftar Bab
                             <span class="bg-slate-200/70 text-slate-700 px-2 py-0.5 rounded text-[10px] leading-none">{{
                                 $book->chapters->count() }}</span>
-                            <div x-show="activeTab === 'chapters'" x-transition
+                            <!-- Hapus x-transition di sini -->
+                            <div x-show="activeTab === 'chapters'"
                                 class="absolute bottom-[-1px] left-0 w-full h-[2px] bg-slate-900 rounded-t-full"></div>
                         </button>
+                        @endif
                     </div>
 
-                    <div x-show="activeTab === 'summary'" x-transition.opacity.duration.300ms>
+                    <!-- Hapus x-transition.opacity.duration.300ms di sini -->
+                    <div x-show="activeTab === 'summary'">
                         <div class="flex flex-wrap gap-2 mb-8">
                             @foreach($book->genres as $genre)
                             <a href="{{ url('/genre/' . $genre->slug) }}"
@@ -178,31 +202,17 @@
                             @endforeach
                         </div>
 
+                        <!-- Perbaikan Sinopsis (max-w-full, break-words, overflow-hidden) -->
                         <article
-                            class="prose prose-slate prose-p:text-slate-600 prose-p:leading-[1.8] max-w-none mb-12 whitespace-pre-line">
+                            class="prose prose-slate prose-p:text-slate-600 prose-p:leading-[1.8] max-w-full mb-12 whitespace-pre-line break-words overflow-hidden">
                             {!! nl2br(e($book->description)) !!}
                         </article>
-
-                        {{-- <div
-                            class="bg-amber-50/80 border border-amber-200/60 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-                            <div class="text-center sm:text-left flex-1">
-                                <h4 class="text-lg font-black text-slate-900 mb-1">Dukung Karya {{ explode(' ',
-                                    trim($book->author->name))[0] }}</h4>
-                                <p class="text-sm text-slate-600 leading-relaxed">Berikan tip untuk mengapresiasi karya
-                                    ini dan memotivasi penulis agar lebih cepat memperbarui bab selanjutnya.</p>
-                            </div>
-                            <button
-                                class="shrink-0 w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-8 py-3.5 rounded-xl text-sm transition-all shadow-sm flex items-center justify-center gap-2 active:scale-95">
-                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                                </svg>
-                                Beri Hadiah
-                            </button>
-                        </div> --}}
                     </div>
 
-                    <div x-show="activeTab === 'chapters'" style="display: none;" x-transition.opacity.duration.300ms>
+                    <!-- Sembunyikan Konten Daftar Bab Jika PDF -->
+                    @if(!$book->pdf_path)
+                    <!-- Hapus x-transition.opacity.duration.300ms di sini -->
+                    <div x-show="activeTab === 'chapters'" style="display: none;">
                         <div class="flex flex-col gap-3">
                             @forelse($book->chapters as $chapter)
                             @auth
@@ -262,8 +272,10 @@
                             @endforelse
                         </div>
                     </div>
+                    @endif
                 </div>
 
+                <!-- BAGIAN KANAN (SIDEBAR HAK CIPTA DLL) -->
                 <div class="lg:col-span-4 space-y-6">
                     <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
                         <div class="flex items-center gap-2 mb-3 text-slate-900">

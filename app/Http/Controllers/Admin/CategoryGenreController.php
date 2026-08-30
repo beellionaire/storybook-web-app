@@ -14,13 +14,11 @@ class CategoryGenreController extends Controller
     public function index()
     {
         $categories = Category::latest()->get();
-        // Mengambil genre beserta subgenre-nya
         $genres = Genre::with('subgenres')->latest()->get();
 
         return view('admin.categories.index', compact('categories', 'genres'));
     }
 
-    // --- MANAJEMEN KATEGORI ---
     public function storeCategory(Request $request)
     {
         $request->validate(['name' => 'required|string|max:255|unique:categories,name']);
@@ -28,7 +26,7 @@ class CategoryGenreController extends Controller
         Category::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
-            'icon' => $request->icon ?? '📚', // Default icon jika kosong
+            'icon' => $request->icon ?? '📚',
         ]);
 
         return back()->with('success', 'Kategori baru berhasil ditambahkan.');
@@ -57,7 +55,6 @@ class CategoryGenreController extends Controller
         return back()->with('success', 'Kategori berhasil dihapus.');
     }
 
-    // --- MANAJEMEN GENRE ---
     public function storeGenre(Request $request)
     {
         $request->validate(['name' => 'required|string|max:255|unique:genres,name']);
@@ -91,7 +88,6 @@ class CategoryGenreController extends Controller
         return back()->with('success', 'Genre beserta subgenrenya berhasil dihapus.');
     }
 
-    // --- MANAJEMEN SUBGENRE ---
     public function storeSubgenre(Request $request)
     {
         $request->validate([

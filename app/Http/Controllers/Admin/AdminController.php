@@ -12,12 +12,10 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        // Menghitung total data
         $totalUsers = User::count();
         $totalBooks = Book::count();
         $pendingRequestsCount = ContributorRequest::where('status', 'pending')->count();
 
-        // Mengambil 5 pengajuan terbaru untuk ditampilkan di tabel ringkasan
         $recentSubmissions = ContributorRequest::with('user')
             ->latest()
             ->take(5)

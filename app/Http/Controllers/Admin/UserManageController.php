@@ -10,12 +10,10 @@ use Illuminate\Validation\Rule;
 
 class UserManageController extends Controller
 {
-    // Menampilkan daftar pengguna beserta fitur pencarian & filter role
     public function index(Request $request)
     {
         $query = User::query();
 
-        // Fitur Pencarian (berdasarkan nama atau email)
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->search . '%')
@@ -23,18 +21,15 @@ class UserManageController extends Controller
             });
         }
 
-        // Fitur Filter Role
         if ($request->filled('role')) {
             $query->where('role', $request->role);
         }
 
-        // Mengambil data dengan pagination (10 data per halaman)
         $users = $query->latest()->paginate(10);
 
         return view('admin.users.index', compact('users'));
     }
 
-    // Menyimpan pengguna baru (Create)
     public function store(Request $request)
     {
         $request->validate([
@@ -51,17 +46,14 @@ class UserManageController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Mengembalikan response dengan session 'success' untuk mentrigger Toast
         return back()->with('success', 'Pengguna berhasil ditambahkan.');
     }
 
-    // Memperbarui data pengguna (Update)
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'role' => ['required', \Illuminate\Validation\Rule::in(['admin', 'contributor', 'user'])],
-            // Ignore email unik untuk user yang sedang diedit ini
             'email' => ['required', 'string', 'email', 'max:255', \Illuminate\Validation\Rule::unique('users')->ignore($id)],
             'password' => ['nullable', 'string', 'min:8'],
         ]);
@@ -81,12 +73,10 @@ class UserManageController extends Controller
         return back()->with('success', 'Data pengguna berhasil diperbarui.');
     }
 
-    // Menghapus pengguna (Delete)
     public function destroy($id)
     {
         $user = User::findOrFail($id);
 
-        // Cegah admin menghapus akunnya sendiri
         if ($user->id === auth()->id()) {
             return back()->with('error', 'Anda tidak dapat menghapus akun Anda sendiri.');
         }

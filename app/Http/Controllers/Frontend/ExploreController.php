@@ -10,15 +10,12 @@ use Illuminate\Support\Str;
 
 class ExploreController extends Controller
 {
-    // 1. Halaman Utama Explore
     public function index()
     {
-        // Ambil 3 Kategori Teratas berdasarkan jumlah buku
         $topCategories = Category::withCount(['books' => function ($query) {
             $query->where('status', 'published');
         }])->orderBy('books_count', 'desc')->take(3)->get();
 
-        // Ambil SEMUA Genre beserta jumlah bukunya
         $genres = Genre::withCount(['books' => function ($query) {
             $query->where('status', 'published');
         }])->orderBy('books_count', 'desc')->get();
@@ -26,7 +23,6 @@ class ExploreController extends Controller
         return view('frontend.explore.index', compact('topCategories', 'genres'));
     }
 
-    // 2. Halaman Detail Kategori
     public function showCategory($slug)
     {
         $category = Category::get()->first(function ($c) use ($slug) {
@@ -40,7 +36,6 @@ class ExploreController extends Controller
             ->orderBy('views_count', 'desc')
             ->paginate(12);
 
-        // Kita gunakan view yang sama, cukup bedakan variabel labelnya
         return view('frontend.explore.detail', [
             'title' => $category->name,
             'type' => 'Kategori',
@@ -48,7 +43,6 @@ class ExploreController extends Controller
         ]);
     }
 
-    // 3. Halaman Detail Genre
     public function showGenre($slug)
     {
         $genre = Genre::get()->first(function ($g) use ($slug) {
@@ -62,7 +56,6 @@ class ExploreController extends Controller
             ->orderBy('views_count', 'desc')
             ->paginate(12);
 
-        // Menggunakan view yang sama dengan Kategori
         return view('frontend.explore.detail', [
             'title' => $genre->name,
             'type' => 'Genre',

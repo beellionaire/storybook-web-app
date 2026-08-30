@@ -15,15 +15,12 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        // 1. AMBIL DATA UNTUK TABEL (Gunakan paginate agar links() & hasPages() di View berfungsi)
         $books = Book::where('author_id', $user->id)
             ->latest()
             ->paginate(10);
 
-        // 2. AMBIL SEMUA BUKU SEKALI SAJA UNTUK STATISTIK (Agar tidak query ke database berkali-kali)
         $allBooks = Book::where('author_id', $user->id)->get();
 
-        // 3. HITUNG STATISTIK (Menggunakan Collection dari $allBooks)
         $stats = [
             'total'       => $allBooks->count(),
             'published'   => $allBooks->where('status', 'published')->count(),
@@ -31,7 +28,6 @@ class DashboardController extends Controller
             'total_views' => $allBooks->sum('views_count'),
         ];
 
-        // Tetap deklarasikan variabel ini jika View Anda membutuhkannya
         $totalCerita = $stats['total'];
         $totalPembaca = $stats['total_views'];
 
@@ -39,7 +35,6 @@ class DashboardController extends Controller
             $q->where('author_id', $user->id);
         })->count();
 
-        // 4. AMBIL DATA KATEGORI & GENRE (Pastikan diakhiri dengan get())
         $categories = Category::latest()->get();
         $genres = Genre::with('subgenres')->latest()->get();
 

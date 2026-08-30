@@ -7,6 +7,7 @@ use App\Models\Book;
 use App\Models\Category;
 use App\Models\Chapter;
 use App\Models\Genre;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -17,20 +18,16 @@ class StoryController extends Controller
     {
         $userId = Auth::id();
 
-        // Ambil data buku khusus milik user yang sedang login
         $query = Book::with(['category', 'chapters'])->where('author_id', $userId)->latest();
 
-        // Fitur Pencarian Judul
         if ($request->filled('search')) {
             $query->where('title', 'like', '%' . $request->search . '%');
         }
 
-        // Filter Kategori
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
 
-        // Filter Status
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
@@ -38,7 +35,6 @@ class StoryController extends Controller
         $books = $query->paginate(10)->withQueryString();
         $categories = Category::all();
 
-        // Statistik Karya Pribadi
         $stats = [
             'total' => Book::where('author_id', $userId)->count(),
             'published' => Book::where('author_id', $userId)->where('status', 'published')->count(),
@@ -49,7 +45,6 @@ class StoryController extends Controller
         return view('contributor.stories.index', compact('books', 'categories', 'stats'));
     }
 
-    // Fungsi untuk menghapus karya sendiri
     public function destroy($id)
     {
         $book = Book::where('author_id', Auth::id())->findOrFail($id);
@@ -67,7 +62,6 @@ class StoryController extends Controller
         return view('contributor.stories.create', compact('categories', 'genres'));
     }
 
-    // Menyimpan data cerita baru ke database
     public function store(Request $request)
     {
         $request->validate([
@@ -78,31 +72,28 @@ class StoryController extends Controller
             'genres.*' => 'exists:genres,id',
             'language' => 'required|string|in:indonesia,inggris,daerah',
             'target_audience' => 'required|string|in:semua umur,remaja,dewasa',
-            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048', // Maksimal 2MB
+            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         $coverPath = null;
         if ($request->hasFile('cover_image')) {
-            // Simpan gambar ke folder 'covers' di storage/app/public
             $coverPath = $request->file('cover_image')->store('covers', 'public');
         }
 
-        // Buat buku baru dengan status awal 'draft'
         $book = Book::create([
             'author_id' => Auth::id(),
             'category_id' => $request->category_id,
             'title' => $request->title,
-            'slug' => Str::slug($request->title) . '-' . Str::random(5), // Slug unik
+            'slug' => Str::slug($request->title) . '-' . Str::random(5),
             'description' => $request->description,
             'cover_image' => $coverPath,
             'language' => $request->language,
             'target_audience' => $request->target_audience,
             'is_mature' => $request->has('is_mature'),
-            'status' => 'draft', // Selalu draft saat pertama kali dibuat
+            'status' => 'draft',
             'views_count' => 0,
         ]);
 
-        // Simpan relasi genre jika ada yang dipilih
         if ($request->has('genres')) {
             $book->genres()->sync($request->genres);
         }
@@ -113,7 +104,6 @@ class StoryController extends Controller
 
     public function show($id)
     {
-        // Pastikan hanya bisa membuka buku miliknya sendiri
         $book = Book::with(['category', 'chapters' => function ($query) {
             $query->orderBy('chapter_number', 'asc');
         }])->where('author_id', Auth::id())->findOrFail($id);
@@ -121,7 +111,6 @@ class StoryController extends Controller
         return view('contributor.stories.show', compact('book'));
     }
 
-    // Menampilkan form edit buku
     public function edit($id)
     {
         $book = Book::where('author_id', Auth::id())->findOrFail($id);
@@ -131,7 +120,6 @@ class StoryController extends Controller
         return view('contributor.stories.edit', compact('book', 'categories', 'genres'));
     }
 
-    // Memperbarui data buku di database
     public function update(Request $request, $id)
     {
         $book = Book::where('author_id', Auth::id())->findOrFail($id);
@@ -146,7 +134,6 @@ class StoryController extends Controller
         ]);
 
         if ($request->hasFile('cover_image')) {
-            // Hapus cover lama jika ada (opsional, tambahkan Storage facade jika perlu)
             $coverPath = $request->file('cover_image')->store('covers', 'public');
             $book->cover_image = $coverPath;
         }
@@ -167,7 +154,6 @@ class StoryController extends Controller
         return redirect()->route('contributor.stories.show', $book->id)->with('success', 'Informasi buku berhasil diperbarui.');
     }
 
-    // Fungsi untuk memperbarui urutan bab via Ajax (Drag & Drop)
     public function reorderChapters(Request $request, $id)
     {
         $book = Book::where('author_id', Auth::id())->findOrFail($id);
@@ -185,5 +171,76 @@ class StoryController extends Controller
         }
 
         return response()->json(['success' => true, 'message' => 'Urutan bab berhasil diperbarui.']);
+    }
+
+    public function upload()
+    {
+        $categories = Category::all();
+
+        return view('contributor.stories.upload', compact('categories'));
+    }
+
+    public function storeUpload(Request $request)
+    {
+        $request->validate([
+            'title'       => 'required|string|max:255',
+            'description' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'language'    => 'required|string|max:50',
+            'is_mature'   => 'required|boolean',
+            'tags'        => 'nullable|string|max:255',
+            'cover_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'pdf_file'    => 'required|file|mimes:pdf|max:15360',
+        ]);
+
+        $bookData = [
+            'author_id'   => auth()->id(),
+            'category_id' => $request->category_id,
+            'title'       => $request->title,
+            'slug'        => Str::slug($request->title) . '-' . time(),
+            'description' => $request->description,
+            'language'    => $request->language,
+            'is_mature'   => $request->is_mature,
+            'status'      => 'draft',
+
+            'story_type'  => 'Fiction',
+            'copyright'   => 'All Rights Reserved',
+            'views_count' => 0,
+        ];
+
+        if ($request->hasFile('cover_image')) {
+            $cover = $request->file('cover_image');
+            $coverName = 'cover-' . Str::slug($request->title) . '-' . time() . '.' . $cover->getClientOriginalExtension();
+            $bookData['cover_image'] = $cover->storeAs('covers', $coverName, 'public');
+        }
+
+        if ($request->hasFile('pdf_file')) {
+            $pdf = $request->file('pdf_file');
+            $pdfName = 'pdf-' . Str::slug($request->title) . '-' . time() . '.' . $pdf->getClientOriginalExtension();
+            $bookData['pdf_path'] = $pdf->storeAs('submissions/pdfs', $pdfName, 'public');
+        }
+
+        $book = Book::create($bookData);
+
+        if ($request->filled('tags')) {
+            $tagNames = explode(',', $request->tags);
+            $tagIds = [];
+
+            foreach ($tagNames as $tagName) {
+                $tagName = trim($tagName);
+                if (!empty($tagName)) {
+                    $tag = Tag::firstOrCreate(
+                        ['name' => $tagName],
+                        ['slug' => Str::slug($tagName)]
+                    );
+                    $tagIds[] = $tag->id;
+                }
+            }
+
+            $book->tags()->sync($tagIds);
+        }
+
+        return redirect()->route('contributor.stories.index')
+            ->with('success', 'Naskah dan Sampul berhasil diunggah! Saat ini sedang dalam antrean review.');
     }
 }

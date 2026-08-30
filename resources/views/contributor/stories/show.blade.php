@@ -99,7 +99,7 @@
             var el = document.getElementById('chapter-list');
             if (el) {
                 Sortable.create(el, {
-                    handle: '.drag-handle', // Memicu drag hanya jika klik di ikon 3 garis
+                    handle: '.drag-handle', 
                     animation: 150,
                     ghostClass: 'bg-orange-50',
                     onEnd: function () {
