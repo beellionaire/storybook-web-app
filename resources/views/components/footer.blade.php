@@ -7,26 +7,39 @@
                 <a href="/">
                     <img src="{{ asset('images/logo.webp') }}" alt="logo" class="w-36 mb-3" width="160" height="40">
                 </a>
-                <p class="text-xs font-medium text-slate-500 leading-relaxed max-w-xs">
-                    Platform membaca interaktif generasi baru. Temukan duniamu, satu halaman setiap kalinya.
+                <p class="text-sm font-medium text-slate-500 leading-relaxed max-w-xs">
+                    Platform membaca interaktif generasi baru. Temukan dunia baru di setiap buku yang kamu baca.
                 </p>
             </div>
 
             <div>
                 <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5">Eksplorasi</h3>
                 <ul class="space-y-4">
-                    <li><a href="{{ route('books.index') }}"
-                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Fiksi
-                            Remaja</a></li>
-                    <li><a href="{{ route('books.index') }}"
-                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Persahabatan</a>
+
+                    @php
+                    // Mengambil 4 kategori dari database
+                    $footerCategories = \App\Models\Category::take(4)->get();
+                    @endphp
+
+                    @foreach($footerCategories as $category)
+                    <li>
+                        <a href="{{ url('/category/' . Str::slug($category->name)) }}"
+                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">
+                            {{ $category->name }}
+                        </a>
                     </li>
-                    <li><a href="{{ route('books.index') }}"
-                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Misteri
-                            & Thriller</a></li>
-                    <li><a href="{{ route('books.index') }}"
-                            class="text-sm font-semibold text-slate-600 hover:text-amber-500 transition-colors">Pilihan
-                            Editor</a></li>
+                    @endforeach
+
+                    <!-- Yang ke-5: Link Lihat Semua Kategori -->
+                    <li class="pt-1">
+                        <a href="{{ route('explore.index') }}"
+                            class="text-sm font-bold text-amber-500 hover:text-amber-600 transition-colors flex items-center gap-1.5 group">
+                            Lihat semua kategori
+                            <i
+                                class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
 

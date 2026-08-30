@@ -2,19 +2,61 @@
     <div class="min-h-screen bg-[#fffdf8] pb-24 font-sans antialiased text-slate-800" x-data="{
              searchQuery: '',
 
-             // 1. GRADIENT WARNA UNTUK KATEGORI
-             gradients: ['from-rose-400 to-rose-600', 'from-purple-500 to-indigo-600', 'from-emerald-400 to-emerald-600'],
+             // MENGAMBIL TEMA WARNA SEPERTI DI LANDING PAGE
+             themes: [
+                 {
+                     wrapper: 'bg-blue-100 border-blue-200 hover:bg-blue-200 hover:border-blue-400 hover:shadow-[0_10px_30px_rgba(59,130,246,0.3)]',
+                     icon_box: 'border-blue-100 group-hover:-rotate-6',
+                     title: 'group-hover:text-blue-700',
+                     count: 'text-blue-600',
+                 },
+                 {
+                     wrapper: 'bg-purple-100 border-purple-200 hover:bg-purple-200 hover:border-purple-400 hover:shadow-[0_10px_30px_rgba(168,85,247,0.3)]',
+                     icon_box: 'border-purple-100 group-hover:rotate-6',
+                     title: 'group-hover:text-purple-700',
+                     count: 'text-purple-600',
+                 },
+                 {
+                     wrapper: 'bg-yellow-100 border-yellow-200 hover:bg-yellow-200 hover:border-yellow-400 hover:shadow-[0_10px_30px_rgba(234,179,8,0.3)]',
+                     icon_box: 'border-yellow-100 group-hover:-rotate-6',
+                     title: 'group-hover:text-yellow-700',
+                     count: 'text-yellow-600',
+                 },
+                 {
+                     wrapper: 'bg-pink-100 border-pink-200 hover:bg-pink-200 hover:border-pink-400 hover:shadow-[0_10px_30px_rgba(236,72,153,0.3)]',
+                     icon_box: 'border-pink-100 group-hover:rotate-6',
+                     title: 'group-hover:text-pink-700',
+                     count: 'text-pink-600',
+                 },
+                 {
+                     wrapper: 'bg-emerald-100 border-emerald-200 hover:bg-emerald-200 hover:border-emerald-400 hover:shadow-[0_10px_30px_rgba(16,185,129,0.3)]',
+                     icon_box: 'border-emerald-100 group-hover:-rotate-6',
+                     title: 'group-hover:text-emerald-700',
+                     count: 'text-emerald-600',
+                 },
+                 {
+                     wrapper: 'bg-orange-100 border-orange-200 hover:bg-orange-200 hover:border-orange-400 hover:shadow-[0_10px_30px_rgba(249,115,22,0.3)]',
+                     icon_box: 'border-orange-100 group-hover:rotate-6',
+                     title: 'group-hover:text-orange-700',
+                     count: 'text-orange-600',
+                 },
+                 {
+                     wrapper: 'bg-rose-100 border-rose-200 hover:bg-rose-200 hover:border-rose-400 hover:shadow-[0_10px_30px_rgba(244,63,94,0.3)]',
+                     icon_box: 'border-rose-100 group-hover:-rotate-6',
+                     title: 'group-hover:text-rose-700',
+                     count: 'text-rose-600',
+                 }
+             ],
 
-             // 2. MENGAMBIL DATA KATEGORI KE ALPINE
-             categories: @js($topCategories->map(function($c) {
+             categories: @js( ($categories ?? $topCategories)->map(function($c) {
                  return [
                      'name' => $c->name,
                      'slug' => Str::slug($c->name),
                      'count' => $c->books_count > 999 ? round($c->books_count/1000, 1) . 'K' : $c->books_count,
+                     'icon' => $c->icon,
                  ];
              })->values()),
 
-             // 3. MENGAMBIL DATA GENRE KE ALPINE
              genres: @js($genres->map(function($g) {
                  return [
                      'name' => $g->name,
@@ -26,13 +68,11 @@
                  ];
              })->values()),
 
-             // FILTER LIVE KATEGORI
              get filteredCategories() {
                  if (this.searchQuery === '') return this.categories;
                  return this.categories.filter(c => c.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
              },
 
-             // FILTER LIVE GENRE (Bisa mencari berdasarkan Nama ATAU Deskripsi)
              get filteredGenres() {
                  if (this.searchQuery === '') return this.genres;
                  return this.genres.filter(g =>
@@ -52,16 +92,24 @@
                 </p>
 
                 <div class="max-w-lg mx-auto relative group">
-                    <div
-                        class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-amber-500 transition-colors">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
-                    <input type="text" x-model="searchQuery"
-                        placeholder="Cari genre, kategori, atau deskripsi cerita..."
-                        class="w-full pl-12 pr-4 py-4 bg-slate-50/50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 focus:bg-white transition-all shadow-sm">
+                    <form action="{{ route('books.index') }}" method="GET" class="w-full">
+                        <div
+                            class="absolute inset-y-0 left-4 top-4 flex items-start pointer-events-none text-slate-400 group-focus-within:text-amber-500 transition-colors">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                        <input type="text" name="search" x-model="searchQuery"
+                            placeholder="Cari genre, kategori, atau judul cerita..."
+                            class="w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all shadow-sm">
+
+                        <div
+                            class="absolute -bottom-6 left-0 w-full text-left pl-3 text-[11px] font-medium text-slate-400">
+                            <i class="fa-solid fa-turn-up fa-rotate-90 mr-1"></i> Tekan <strong>Enter</strong> untuk
+                            mencari ke seluruh daftar buku.
+                        </div>
+                    </form>
                 </div>
             </div>
         </header>
@@ -70,36 +118,47 @@
             x-transition>
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-lg font-black text-slate-900 tracking-tight">
-                    <span x-show="searchQuery === ''">Kategori Terpopuler</span>
+                    <span x-show="searchQuery === ''">Semua Kategori</span>
                     <span x-show="searchQuery !== ''">Kategori yang Cocok</span>
                 </h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- DESAIN KOTAK SAMA PERSIS DENGAN LANDING PAGE -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+
                 <template x-for="(cat, index) in filteredCategories" :key="cat.name">
                     <a :href="'/category/' + cat.slug"
-                        class="relative overflow-hidden rounded-2xl p-6 h-40 flex flex-col justify-end group shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-200"
-                        :class="index == 2 ? 'md:hidden lg:flex' : ''">
+                        class="group p-6 sm:p-8 rounded-3xl border-2 hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"
+                        :class="themes[index % themes.length].wrapper">
 
-                        <div class="absolute inset-0 bg-gradient-to-br opacity-90 group-hover:opacity-100 transition-opacity"
-                            :class="gradients[index % 3]">
+                        <!-- Lingkaran Putih Penampung Logo -->
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 transition-transform duration-300 border p-3.5 sm:p-4"
+                            :class="themes[index % themes.length].icon_box">
+
+                            <!-- Render Ikon FontAwesome (Jika Ada di Database) -->
+                            <template x-if="cat.icon">
+                                <i :class="cat.icon + ' ' + themes[index % themes.length].count"
+                                    class="text-3xl sm:text-4xl group-hover:scale-110 transition-transform"></i>
+                            </template>
+
+                            <!-- Render Fallback Ikon (Jika Kosong di Database) -->
+                            <template x-if="!cat.icon">
+                                <i class="fa-solid fa-book text-3xl sm:text-4xl group-hover:scale-110 transition-transform"
+                                    :class="themes[index % themes.length].count"></i>
+                            </template>
+
                         </div>
 
-                        <div
-                            class="absolute -right-6 -top-6 text-white/20 group-hover:scale-110 transition-transform duration-500">
-                            <svg class="w-32 h-32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
-                                </path>
-                            </svg>
-                        </div>
-
-                        <div class="relative z-10 text-white">
-                            <h3 class="text-2xl font-black mb-1" x-text="cat.name"></h3>
-                            <p class="text-sm font-medium text-white/80"><span x-text="cat.count"></span> Cerita</p>
-                        </div>
+                        <!-- Teks -->
+                        <h3 class="font-balsamiq text-lg sm:text-xl font-bold text-slate-800 mb-1 transition-colors"
+                            :class="themes[index % themes.length].title" x-text="cat.name"></h3>
+                        <p class="text-xs font-bold uppercase tracking-widest"
+                            :class="themes[index % themes.length].count">
+                            <span x-text="cat.count"></span> Cerita
+                        </p>
                     </a>
                 </template>
+
             </div>
         </section>
 

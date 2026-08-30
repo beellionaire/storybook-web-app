@@ -114,4 +114,21 @@ class BooksController extends Controller
 
         return view('frontend.books.read', compact('book', 'chapter', 'contentData', 'prevChapter', 'nextChapter'));
     }
+
+    public function readPdf($slug)
+    {
+        // 1. Cari buku berdasarkan slug
+        $book = Book::where('slug', $slug)->firstOrFail();
+
+        // 2. Cek apakah buku benar-benar memiliki file PDF
+        if (!$book->pdf_path) {
+            abort(404, 'File PDF tidak ditemukan.');
+        }
+
+        // 3. Tambahkan jumlah tayangan (views_count)
+        $book->increment('views_count');
+
+        // 4. Arahkan pengguna ke URL file PDF di storage
+        return redirect(asset('storage/' . $book->pdf_path));
+    }
 }

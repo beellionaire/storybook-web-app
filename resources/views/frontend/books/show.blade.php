@@ -97,10 +97,9 @@
 
                         <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto mt-auto">
 
-                            @auth
-                            <!-- Kondisional Tombol PDF vs Bab -->
+                            <!-- === TOMBOL MEMBACA UNTUK PUBLIK (TANPA LOGIN) === -->
                             @if($book->pdf_path)
-                            <a href="{{ asset('storage/' . $book->pdf_path) }}" target="_blank"
+                            <a href="{{ route('books.read.pdf', $book->slug) }}" target="_blank"
                                 class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-all shadow-md active:scale-95">
                                 Lihat Cerita (PDF)
                                 <i class="fa-solid fa-file-pdf"></i>
@@ -124,31 +123,24 @@
                             @endif
                             @endif
 
+                            <!-- === TOMBOL SIMPAN PUSTAKA (WAJIB LOGIN) === -->
+                            @auth
                             @php
                             $inWatchlist = auth()->user()->watchlists()->where('book_id', $book->id)->exists();
                             @endphp
-
                             <form action="{{ route('library.watchlist.toggle', $book->id) }}" method="POST"
                                 class="w-full sm:w-auto">
                                 @csrf
                                 <button type="submit"
                                     class="w-full inline-flex justify-center items-center gap-2 bg-white hover:bg-slate-50 border {{ $inWatchlist ? 'border-amber-500 text-amber-600' : 'border-slate-300 text-slate-700' }} px-8 py-3.5 rounded-xl font-bold text-sm transition-all active:scale-95 shadow-sm">
-
                                     @if($inWatchlist)
                                     <i class="fa-solid fa-check"></i> Tersimpan
                                     @else
                                     <i class="fa-solid fa-plus text-slate-400"></i> Pustaka
                                     @endif
-
                                 </button>
                             </form>
-
                             @else
-                            <a href="{{ route('login') }}"
-                                class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-all shadow-md active:scale-95">
-                                <i class="fa-solid fa-lock text-slate-400"></i> Login untuk Membaca
-                            </a>
-
                             <a href="{{ route('login') }}"
                                 class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 px-8 py-3.5 rounded-xl font-bold text-sm transition-all shadow-sm">
                                 <i class="fa-solid fa-bookmark text-slate-400"></i> Simpan Cerita

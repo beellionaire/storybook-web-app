@@ -31,6 +31,8 @@ Route::get('/', [LandingController::class, 'index'])->name('home');
 
 Route::get('/books', [BooksController::class, 'library'])->name('books.index');
 Route::get('/story/{slug}', [BooksController::class, 'readStory'])->name('books.story');
+// Rute untuk membaca PDF
+Route::get('/buku/{book_slug}/pdf', [BooksController::class, 'readPdf'])->name('books.read.pdf');
 
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore.index');
 Route::get('/category/{slug}', [ExploreController::class, 'showCategory'])->name('explore.category');

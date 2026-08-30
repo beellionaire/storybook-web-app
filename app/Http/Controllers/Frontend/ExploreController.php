@@ -14,7 +14,7 @@ class ExploreController extends Controller
     {
         $topCategories = Category::withCount(['books' => function ($query) {
             $query->where('status', 'published');
-        }])->orderBy('books_count', 'desc')->take(3)->get();
+        }])->orderBy('books_count', 'desc')->get();
 
         $genres = Genre::withCount(['books' => function ($query) {
             $query->where('status', 'published');

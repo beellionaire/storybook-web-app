@@ -37,7 +37,7 @@
                 <span
                     class="absolute inset-0 h-full w-full rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span>
                 <span class="relative flex items-center gap-2">
-                    Mulai Eksplorasi
+                    Baca Buku
                     <svg class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"

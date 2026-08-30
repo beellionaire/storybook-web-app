@@ -9,6 +9,11 @@
     <title>KitaBaca - Platform Membaca Interaktif</title>
     <meta name="description"
         content="KitaBaca adalah platform tempat Anda bisa membaca, menulis, dan mengeksplorasi berbagai cerita menarik dari para kontributor berbakat.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
